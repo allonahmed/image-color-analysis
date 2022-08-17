@@ -1,22 +1,27 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useRef } from 'react';
 import '../styles/inputimage.css'
+import { IoIosImages } from 'react-icons/io'
 
+export const InputImage: React.FunctionComponent = () => {
+    const inputFileRef: any = useRef(null);
 
-const StyledInput = styled.input`
-    padding: max(200px, 20%) max(200px, 20%);
-    border: 3px solid #000;
-    &::file-selector-button {
-        display: none;
+    const onFileChange = (e: any) => {
+        console.log(e.target.files);
     }
-    -webkit-appearance:none;
-`
+    const refFileChange = () => {
+        inputFileRef.current.click();
+    }
 
-export const InputImage = () => {
     return (
-        <div className="fileupload">
-            <input type="file" />
-            Any content here, perhaps button text
+        <div className="image-upload-form" onClick={refFileChange}>
+            <input
+                type="file"
+                ref={inputFileRef}
+                onChange={onFileChange}
+                className='image-upload-input'
+            />
+            <IoIosImages />
+            <h3>Upload Image</h3>
         </div>
     )
 }
