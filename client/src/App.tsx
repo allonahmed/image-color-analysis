@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { ButtonStd } from './components/ButtonStd';
+import { ImageUpload } from './components/ImageUpload';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <ButtonStd onClick={() => alert('clicked')}>
         Click me
       </ButtonStd>
+      <ImageUpload />
     </div>
   );
 }
