@@ -1,12 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useRef, SetStateAction } from 'react';
 import '../styles/inputimage.css'
 import { IoIosImages } from 'react-icons/io'
 
-export const InputImage: React.FunctionComponent = () => {
+type Props = {
+    setImage: React.Dispatch<SetStateAction<any>>
+}
+
+export const InputImage: React.FunctionComponent<Props> = ({
+    setImage
+}) => {
     const inputFileRef: any = useRef(null);
 
     const onFileChange = (e: any) => {
-        console.log(e.target.files);
+        setImage(e.target.files);
     }
     const refFileChange = () => {
         inputFileRef.current.click();
@@ -16,6 +22,8 @@ export const InputImage: React.FunctionComponent = () => {
         <div className="image-upload-form" onClick={refFileChange}>
             <input
                 type="file"
+                alt='image upload'
+                accept="image/png, image/jpeg, image/jpg"
                 ref={inputFileRef}
                 onChange={onFileChange}
                 className='image-upload-input'
