@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { ButtonStd } from './components/ButtonStd';
 import { ImageUpload } from './components/ImageUpload';
 
-function App() {
+import { MockApi } from './api/testapi'
+
+const App: React.FC = () => {
+  const [image, setImage] = useState<any>(null);
+  useEffect(() => {
+    console.log('uploaded image: ', image)
+  }, [image])
+
   return (
     <div className="App">
-      react app
-      <ButtonStd onClick={() => alert('clicked')}>
-        Click me
-      </ButtonStd>
-      <ImageUpload />
+      <button onClick={() => MockApi()}>api test</button>
+      <ImageUpload setImage={setImage} image={image} />
     </div>
   );
 }

@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 file_path = os.path.abspath(os.getcwd())+"\database.db"
 
 app = Flask(__name__)
-
+CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+file_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy()
@@ -70,4 +70,4 @@ def after_request(response):
   return response
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=8080)
