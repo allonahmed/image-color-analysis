@@ -11,3 +11,11 @@
 .image-upload-input {
   display: none;
 }
+
+.image-upload-container {
+}
+.uploaded-image {
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+}

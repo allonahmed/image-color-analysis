@@ -13,3 +13,22 @@ export const MockApi = async () => {
             console.log('error: ', err);
         })
 }
+
+export const UploadImage = async (image: any) => {
+    const formData = new FormData();
+
+    formData.append('image', image[0])
+    console.log(formData)
+    await axios.post('/upload-image',
+        formData,
+        {
+            headers: {
+                "Content-type": "multipart/form-data; charset=UTF-8"
+            }
+        }
+    ).then((response: any) => response).then(message => {
+        console.log(message);
+    }).catch((err) => {
+        console.log('error: ', err);
+    })
+}
