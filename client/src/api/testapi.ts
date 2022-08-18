@@ -14,10 +14,12 @@ export const MockApi = async () => {
         })
 }
 
-export const UploadImage = async (image: any) => {
+export const UploadImage = async (e: any, image: any) => {
+    e.preventDefault();
+    console.log('image in UploadImage():', image[0])
     const formData = new FormData();
 
-    formData.append('image', image[0])
+    formData.append('file', image[0])
     console.log(formData)
     await axios.post('/upload-image',
         formData,

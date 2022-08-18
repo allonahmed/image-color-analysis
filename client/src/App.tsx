@@ -2,19 +2,14 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { ImageUpload } from './components/ImageUpload';
 
-import { MockApi, UploadImage } from './api/testapi'
-
 const App: React.FC = () => {
   const [image, setImage] = useState<any>(null);
   useEffect(() => {
-    console.log('uploaded image: ', image)
+    console.log('image state: ', image)
   }, [image])
 
   return (
     <div className="App">
-      <button onClick={() => {
-        image ? UploadImage(image) : console.log('cannot send without image')
-      }}>api test</button>
       <ImageUpload setImage={setImage} image={image} />
     </div>
   );
