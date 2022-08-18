@@ -1,7 +1,9 @@
 import os
 from flask import *
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
+
+from db import db_init, db
+from model import Img
 
 file_path = os.path.abspath(os.getcwd())+"\database.db"
 
@@ -9,8 +11,8 @@ app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+file_path
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy()
-db.init_app(app)
+
+db_init(app)
 
 class ContactModel(db.Model):
     __tablename__ = "table"
@@ -27,6 +29,12 @@ class ContactModel(db.Model):
 @app.before_first_request
 def create_table():
     db.create_all()
+
+# testing route to upload images from client
+@app.route('/upload-image', methods=['POST'])
+def upload_image():
+    image = json.loads(request.form);
+    return image
 
 @app.route('/data')
 def retrieveDataList():
@@ -62,6 +70,9 @@ def delete():
  
     return jsonify({"success": True}), 201
 
+
+
+
 @app.after_request
 def after_request(response):
   response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
@@ -70,4 +81,4 @@ def after_request(response):
   return response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=8090)

@@ -13,3 +13,18 @@ export const MockApi = async () => {
             console.log('error: ', err);
         })
 }
+
+export const UploadImage = async (image?: any) => {
+    await axios.post('/upload-image',
+        { image: 'ggkgk' },
+        {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }
+    ).then((response: any) => response).then(message => {
+        console.log(message);
+    }).catch((err) => {
+        console.log('error: ', err);
+    })
+}

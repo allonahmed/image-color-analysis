@@ -1,5 +1,4 @@
 import React, { useRef, SetStateAction } from 'react';
-import '../styles/inputimage.css'
 import { IoIosImages } from 'react-icons/io'
 
 type Props = {

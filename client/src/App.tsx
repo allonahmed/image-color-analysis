@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { ImageUpload } from './components/ImageUpload';
 
-import { MockApi } from './api/testapi'
+import { MockApi, UploadImage } from './api/testapi'
 
 const App: React.FC = () => {
   const [image, setImage] = useState<any>(null);
@@ -12,7 +12,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <button onClick={() => MockApi()}>api test</button>
+      <button onClick={() => UploadImage()}>api test</button>
       <ImageUpload setImage={setImage} image={image} />
     </div>
   );
