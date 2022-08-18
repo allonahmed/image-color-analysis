@@ -29,7 +29,7 @@ export const UploadImage = async (e: any, image: any) => {
             }
         }
     ).then((response: any) => response).then(message => {
-        console.log(message);
+        console.log('response:', message.data);
     }).catch((err) => {
         console.log('error: ', err);
     })

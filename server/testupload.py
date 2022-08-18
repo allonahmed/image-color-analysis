@@ -1,9 +1,12 @@
 import os
 import json
-from flask import Flask, flash, request, redirect, url_for, session
+from flask import Flask, flash, request, redirect, url_for, session, jsonify
 from werkzeug.utils import secure_filename # secure files
 from flask_cors import CORS, cross_origin # prevent cors policy blocks
 import logging # useful for logging info
+from PIL import Image
+from color_analysis import dominant_color, pallete_colors
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -18,8 +21,12 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #file validation
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+       filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def get_colors(filename):
+    img =  Image.open(filename)
+    return img.convert('RGB').getcolors()
+    
 
 @app.route('/upload-image', methods=['POST'])
 def fileUpload():
@@ -33,11 +40,12 @@ def fileUpload():
         return redirect(request.url)
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
+        logger.info(filename)
         destination="/".join([target, filename])
         file.save(destination)
-        session['uploadFilePath']=destination
-        response=file
-        return json.loads(response)
+        # session['uploadFilePath']=destination
+        response = pallete_colors('./assets/'+ filename)
+        return jsonify(response)
     return ''
 
 if __name__ == "__main__":
