@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask, flash, request, redirect, url_for, session
 from werkzeug.utils import secure_filename # secure files
 from flask_cors import CORS, cross_origin # prevent cors policy blocks
@@ -14,6 +15,12 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+#file validation
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 @app.route('/upload-image', methods=['POST'])
 def fileUpload():
     target=UPLOAD_FOLDER
@@ -21,15 +28,20 @@ def fileUpload():
         os.mkdir(target)
     logger.info("welcome to upload`")
     file = request.files['file'] 
-    filename = secure_filename(file.filename)
-    destination="/".join([target, filename])
-    file.save(destination)
-    session['uploadFilePath']=destination
-    response="Whatever you wish too return"
-    return response
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        destination="/".join([target, filename])
+        file.save(destination)
+        session['uploadFilePath']=destination
+        response=file
+        return json.loads(response)
+    return ''
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(24)
-    app.run(debug=True,host="0.0.0.0", port=8091, use_reloader=False)
+    app.run(debug=True,host="0.0.0.0", port=8092, use_reloader=False)
 
 flask_cors.CORS(app, expose_headers='Authorization')
