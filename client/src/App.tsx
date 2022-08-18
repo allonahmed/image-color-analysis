@@ -12,7 +12,9 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <button onClick={() => UploadImage()}>api test</button>
+      <button onClick={() => {
+        image ? UploadImage(image) : console.log('cannot send without image')
+      }}>api test</button>
       <ImageUpload setImage={setImage} image={image} />
     </div>
   );

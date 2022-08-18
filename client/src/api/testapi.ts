@@ -14,12 +14,16 @@ export const MockApi = async () => {
         })
 }
 
-export const UploadImage = async (image?: any) => {
+export const UploadImage = async (image: any) => {
+    const formData = new FormData();
+
+    formData.append('image', image[0])
+    console.log(formData)
     await axios.post('/upload-image',
-        { image: 'ggkgk' },
+        formData,
         {
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "multipart/form-data; charset=UTF-8"
             }
         }
     ).then((response: any) => response).then(message => {

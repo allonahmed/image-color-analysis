@@ -33,8 +33,10 @@ def create_table():
 # testing route to upload images from client
 @app.route('/upload-image', methods=['POST'])
 def upload_image():
-    image = json.loads(request.form);
-    return image
+    # image = json.loads(request.data);
+    res = json.loads(request.data)
+    print(res)
+    return res
 
 @app.route('/data')
 def retrieveDataList():
@@ -81,4 +83,4 @@ def after_request(response):
   return response
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8090)
+    app.run(host='0.0.0.0', port=8091)
