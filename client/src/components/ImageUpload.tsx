@@ -1,7 +1,9 @@
-import React, { useRef, SetStateAction, useState } from 'react';
+import React, { useRef, SetStateAction } from 'react';
 import { IoIosImages } from 'react-icons/io';
 import '../styles/inputimage.css';
 import { UploadImage } from '../api/testapi';
+import { useDispatch } from 'react-redux'
+import { updateImage, updateImageColors } from '../redux/reducers/image';
 
 type Props = {
     image: any;
@@ -10,31 +12,35 @@ type Props = {
 export const ImageUpload: React.FunctionComponent<Props> = ({
     setImage, image
 }) => {
-    const [imageData, setImageData] = useState<any>(null);
     const inputFileRef: any = useRef(null);
+    const dispatch = useDispatch()
 
     const onFileChange = (e: any) => {
         setImage(e.target.files);
+        dispatch(updateImage(e.target.files[0]))
     }
     const refFileChange = () => {
         inputFileRef.current.click();
     }
 
-    console.log(imageData);
     return (
         <form onSubmit={(event) => {
-            UploadImage(event, image).then((res) => setImageData(res))
+            UploadImage(event, image).then((res) => dispatch(updateImageColors(res)))
         }}
             className='image-upload-form'>
             <div
                 className={image ? "image-container" : "image-container hover-upload"}
                 onClick={() => image === null && refFileChange()}
             >
-                {image ? <img src={URL.createObjectURL(image[0])} alt="file uploaded" className="uploaded-image" /> :
-                    <>
-                        <IoIosImages />
-                        <h3>Upload Image</h3>
-                    </>
+                {
+                    image
+                        ?
+                        <img src={URL.createObjectURL(image[0])} alt="file uploaded" className="uploaded-image" />
+                        :
+                        <>
+                            <IoIosImages />
+                            <h3>Upload Image</h3>
+                        </>
                 }
             </div>
             <div>
