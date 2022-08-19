@@ -21,16 +21,14 @@ export const UploadImage = async (e: any, image: any) => {
 
     formData.append('file', image[0])
     console.log(formData)
-    await axios.post('/upload-image',
+    return await axios.post('/upload-image',
         formData,
         {
             headers: {
                 "Content-type": "multipart/form-data; charset=UTF-8"
             }
         }
-    ).then((response: any) => response).then(message => {
-        console.log('response:', message.data);
-    }).catch((err) => {
+    ).then((response: any) => response).then(message => message.data).catch((err) => {
         console.log('error: ', err);
     })
 }

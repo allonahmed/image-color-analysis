@@ -1,4 +1,4 @@
-import React, { useRef, SetStateAction } from 'react';
+import React, { useRef, SetStateAction, useState } from 'react';
 import { IoIosImages } from 'react-icons/io';
 import '../styles/inputimage.css';
 import { UploadImage } from '../api/testapi';
@@ -10,6 +10,7 @@ type Props = {
 export const ImageUpload: React.FunctionComponent<Props> = ({
     setImage, image
 }) => {
+    const [imageData, setImageData] = useState<any>(null);
     const inputFileRef: any = useRef(null);
 
     const onFileChange = (e: any) => {
@@ -19,8 +20,12 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
         inputFileRef.current.click();
     }
 
+    console.log(imageData);
     return (
-        <form onSubmit={(event) => UploadImage(event, image)} className='image-upload-form'>
+        <form onSubmit={(event) => {
+            UploadImage(event, image).then((res) => setImageData(res))
+        }}
+            className='image-upload-form'>
             <div
                 className={image ? "image-container" : "image-container hover-upload"}
                 onClick={() => image === null && refFileChange()}
