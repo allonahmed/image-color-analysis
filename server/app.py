@@ -33,10 +33,10 @@ def create_table():
 # testing route to upload images from client
 @app.route('/upload-image', methods=['POST'])
 def upload_image():
-    # image = json.loads(request.data);
-    res = json.loads(request.data)
-    print(res)
-    return res
+    image = json.loads(request.data);
+    res = request.form
+    print('response:', res)
+    return "yo"
 
 @app.route('/data')
 def retrieveDataList():

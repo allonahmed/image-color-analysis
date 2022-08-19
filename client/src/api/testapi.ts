@@ -14,21 +14,21 @@ export const MockApi = async () => {
         })
 }
 
-export const UploadImage = async (image: any) => {
+export const UploadImage = async (e: any, image: any) => {
+    e.preventDefault();
+    console.log('image in UploadImage():', image[0])
     const formData = new FormData();
 
-    formData.append('image', image[0])
+    formData.append('file', image[0])
     console.log(formData)
-    await axios.post('/upload-image',
+    return await axios.post('/upload-image',
         formData,
         {
             headers: {
                 "Content-type": "multipart/form-data; charset=UTF-8"
             }
         }
-    ).then((response: any) => response).then(message => {
-        console.log(message);
-    }).catch((err) => {
+    ).then((response: any) => response).then(message => message.data).catch((err) => {
         console.log('error: ', err);
     })
 }
