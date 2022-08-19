@@ -3,7 +3,8 @@ import { IoIosImages } from 'react-icons/io';
 import '../styles/inputimage.css';
 import { UploadImage } from '../api/testapi';
 import { useDispatch } from 'react-redux'
-import { updateImage, updateImageColors } from '../redux/reducers/image';
+import { updateImageColors } from '../redux/reducers/image';
+import { updateLoading } from '../redux/reducers/system';
 
 type Props = {
     image: any;
@@ -17,7 +18,7 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
 
     const onFileChange = (e: any) => {
         setImage(e.target.files);
-        dispatch(updateImage(e.target.files[0]))
+        // dispatch(updateImage(e.target.files[0]))
     }
     const refFileChange = () => {
         inputFileRef.current.click();
@@ -25,23 +26,23 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
 
     return (
         <form onSubmit={(event) => {
-            UploadImage(event, image).then((res) => dispatch(updateImageColors(res)))
+            dispatch(updateLoading(true));
+            UploadImage(event, image).then((res) => {
+                dispatch(updateLoading(false));
+                dispatch(updateImageColors(res));
+            })
         }}
             className='image-upload-form'>
             <div
                 className={image ? "image-container" : "image-container hover-upload"}
                 onClick={() => image === null && refFileChange()}
             >
-                {
-                    image
-                        ?
-                        <img src={URL.createObjectURL(image[0])} alt="file uploaded" className="uploaded-image" />
-                        :
-                        <>
-                            <IoIosImages />
-                            <h3>Upload Image</h3>
-                        </>
-                }
+                {image ?
+                    <img src={URL.createObjectURL(image[0])} alt="file uploaded" className="uploaded-image" /> :
+                    <>
+                        <IoIosImages />
+                        <h3>Upload Image</h3>
+                    </>}
             </div>
             <div>
                 <input

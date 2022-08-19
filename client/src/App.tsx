@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import { DisplayColors } from './components/DispayColors';
 import { ImageUpload } from './components/ImageUpload';
 
 const App: React.FC = () => {
@@ -11,6 +12,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <ImageUpload setImage={setImage} image={image} />
+      <DisplayColors />
     </div>
   );
 }
