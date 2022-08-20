@@ -1,7 +1,7 @@
 import os
 import sys
-sys.path.insert(0, '/Users/allon/pwa/color-reading/server/models')
-sys.path.insert(0, '/Users/allon/pwa/color-reading/server/config')
+sys.path.insert(0, '/Users/allon/pwa/image-analysis/server/models')
+sys.path.insert(0, '/Users/allon/pwa/image-analysis/server/config')
 from flask import *
 from flask_cors import CORS
 from db import db_init, db

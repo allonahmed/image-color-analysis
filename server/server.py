@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/Users/allon/pwa/color-reading/server/utils')
+sys.path.insert(0, '/Users/allon/pwa/image-analysis/server/utils')
 from colors import pallete_colors
 from flask import Flask, flash, request, redirect, url_for, session, jsonify
 from werkzeug.utils import secure_filename # secure files
