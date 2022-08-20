@@ -21,10 +21,22 @@ def sort_list(list):
     list.sort(key = lambda x: x[0], reverse=True)
     return list
 
+#get pixel count of image
+def total_pixels(path):
+    image_size = Image.open(path).size;
+    return image_size[0] * image_size[1]
+
 #returns accurate pallete of image (returns rgba of most popular pixel colors)
 def get_color_pallete(path, count = 3):
     colors = sort_list(get_colors(path))
+    pixels = total_pixels(path)
     pallete = []
     for i in range(0, count):
-        pallete.append(colors[i][1])
+        pallete.append({
+                "color": colors[i][1],
+                "percentage": round(colors[i][0] / pixels, 4)
+            })
     return pallete
+
+
+# def get_color_percentage(path, count):
