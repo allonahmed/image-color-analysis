@@ -13,7 +13,7 @@ logger = logging.getLogger('HELLO WORLD')
 
 #folder path and file types we want to allow
 UPLOAD_FOLDER = './assets/'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'PNG'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'PNG', 'webp'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

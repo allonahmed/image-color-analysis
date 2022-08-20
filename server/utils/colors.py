@@ -12,7 +12,7 @@ def ct_pallete_colors(image_path):
 #using Pillow library to generate colors in image
 def get_colors(image_path):
     image = Image.open(image_path);
-    return image.getcolors(maxcolors=806)
+    return image.getcolors(maxcolors=80000006)
 
 path = '../assets/flag.png'
 
