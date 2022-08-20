@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, '/Users/allon/pwa/color-reading/server/config')
 from db import db
 
 class Img(db.Model):

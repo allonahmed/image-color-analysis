@@ -1,17 +1,17 @@
 import os
-import json
+import sys
+sys.path.insert(0, '/Users/allon/pwa/color-reading/server/utils')
+from colors import pallete_colors
 from flask import Flask, flash, request, redirect, url_for, session, jsonify
 from werkzeug.utils import secure_filename # secure files
 from flask_cors import CORS, cross_origin # prevent cors policy blocks
 import logging # useful for logging info
-from PIL import Image
-from color_analysis import dominant_color, pallete_colors
 
-
+#config for logging server information
 logging.basicConfig(level=logging.INFO)
-
 logger = logging.getLogger('HELLO WORLD')
 
+#folder path and file types we want to allow
 UPLOAD_FOLDER = './assets/'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'PNG'])
 

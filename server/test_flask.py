@@ -1,9 +1,11 @@
 import os
+import sys
+sys.path.insert(0, '/Users/allon/pwa/color-reading/server/models')
+sys.path.insert(0, '/Users/allon/pwa/color-reading/server/config')
 from flask import *
 from flask_cors import CORS
-
 from db import db_init, db
-from model import Img
+from img_model import Img
 
 file_path = os.path.abspath(os.getcwd())+"\database.db"
 
