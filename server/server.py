@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.insert(0, '/Users/allon/pwa/image-analysis/server/utils')
-from colors import pallete_colors
+from colors import get_color_pallete
 from flask import Flask, flash, request, redirect, url_for, session, jsonify
 from werkzeug.utils import secure_filename # secure files
 from flask_cors import CORS, cross_origin # prevent cors policy blocks
@@ -44,7 +44,7 @@ def fileUpload():
         destination="/".join([target, filename])
         file.save(destination)
         # session['uploadFilePath']=destination
-        response = pallete_colors('./assets/'+ filename)
+        response = get_color_pallete('./assets/'+ filename)
         return jsonify(response)
     return ''
 
