@@ -15,7 +15,7 @@ export const UploadSneaker = async () => {
   };
   
   await axios.request(options).then(function (response) {
-    console.log(response.data);
+    axios.post('http://localhost:2020/send-data/', response).then((res)=> console.log(res));
   }).catch(function (error) {
     console.error(error);
   });
