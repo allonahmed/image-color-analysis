@@ -1,7 +1,7 @@
 import React, { useRef, SetStateAction } from 'react';
 import { IoIosImages } from 'react-icons/io';
 import '../styles/inputimage.css';
-import { UploadImage } from '../api/testapi';
+import { UploadImage } from '../api/uploadImage';
 import { updateImageColors } from '../redux/reducers/image';
 import { updateLoading } from '../redux/reducers/system';
 import { useAppDispatch } from '../hooks';
