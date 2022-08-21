@@ -28,10 +28,41 @@ const pool = mysql.createPool({
   database: "sneaker-db",
   port: "3306",
 });
+
 pool.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
   if (error) throw error;
   console.log('The solution is: ', results[0].solution);
 });
+
+app.post('/upload-sneakers', (req, res) => {
+  const data = {
+    id: "1",
+    sku: "123",
+    brand: "Puma",
+    name: "Puma V pro skaters",
+    colorway: "black",
+    gender: "male",
+    silhouette: "idk",
+    release_year: "2022",
+    release_date: "may-20-1993",
+    estimated_market_value: "100",
+    retail_price: "120",
+    story: "fkm kf dkfdj",
+    original_image: "og image",
+    thumbnail_image: "thumbnail"
+  }
+  query = "INSERT INTO sneakers VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  db.query(query,
+    [data.id, data.sku, data.brand, data.name, data.colorway, data.gender, data.silhouette, data.release_year, data.release_date, data.retail_price, data.estimated_market_value, data.story, data.original_image, data.thumbnail_image]
+    , (err, result) => {
+      if (err) console.log(err)
+      else {
+        console.log(res)
+        res.send(result)
+      }
+    })
+})
+
 
 app.use(cors(corsOptions));
 
