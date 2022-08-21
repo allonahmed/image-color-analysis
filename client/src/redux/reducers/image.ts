@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type imageColors = {
-  colors: Array<number>;
+export type imageColors = {
+  color: Array<number>;
   percentage: number;
 };
 
-type imageState = {
+export type imageState = {
   image: File | null;
   imageColors: Array<imageColors> | null;
 };
@@ -16,13 +16,13 @@ const initialState: imageState = {
 };
 
 const imageSlice = createSlice({
-  name: "image",
+  name: 'image',
   initialState: initialState,
   reducers: {
-    updateImage: (state: any, action: any) => {
+    updateImage: (state, action: PayloadAction<File>) => {
       state.image = action.payload;
     },
-    updateImageColors: (state: any, action: any) => {
+    updateImageColors: (state, action: PayloadAction<imageColors[]>) => {
       state.imageColors = action.payload;
     }
   }
