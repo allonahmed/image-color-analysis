@@ -1,23 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 type systemState = {
-    loading: boolean;
+  loading: boolean;
 }
 
 const initialState: systemState = {
-    loading: false
-}
+  loading: false
+};
 
 const systemSlice = createSlice({
-    name: 'system',
-    initialState: initialState,
-    reducers: {
-        updateLoading: (state: any, action: any) => {
-            state.loading = action.payload;
-        },
+  name: 'system',
+  initialState: initialState,
+  reducers: {
+    updateLoading: (state: any, action: any) => {
+      state.loading = action.payload;
     },
-})
+  },
+});
 
-export const { updateLoading } = systemSlice.actions
+export const { updateLoading } = systemSlice.actions;
 
-export default systemSlice.reducer
+export default systemSlice.reducer;

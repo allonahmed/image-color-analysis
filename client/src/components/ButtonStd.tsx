@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components';
-import { color as cl } from '../constants/color'
+import { color as cl } from '../constants/color';
 
 type Props = {
-    children?: React.ReactNode | string,
-    style?: object,
-    onClick: () => any
+  children?: React.ReactNode | string,
+  style?: object,
+  onClick: () => unknown
 }
 
 const StyledButton = styled.button`
@@ -16,10 +16,10 @@ const StyledButton = styled.button`
 `;
 
 export const ButtonStd: React.FunctionComponent<Props> = ({
-    children,
-    onClick
+  children,
+  onClick
 }) => {
-    return (
-        <StyledButton onClick={onClick}>{children}</StyledButton>
-    )
-}
+  return (
+    <StyledButton onClick={onClick}>{children}</StyledButton>
+  );
+};

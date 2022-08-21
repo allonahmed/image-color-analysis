@@ -5,10 +5,10 @@ import { ImageUpload } from './components/ImageUpload';
 import { Loading } from './components/Loading';
 
 const App: React.FC = () => {
-  const [image, setImage] = useState<any>(null);
+  const [image, setImage] = useState<File[] | null>(null);
   useEffect(() => {
-    console.log('image state: ', image)
-  }, [image])
+    console.log('image state: ', image);
+  }, [image]);
 
   return (
     <div className="App">
@@ -17,6 +17,6 @@ const App: React.FC = () => {
       <Loading />
     </div>
   );
-}
+};
 
 export default App;
