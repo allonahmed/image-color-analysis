@@ -62,7 +62,7 @@ app.post('/upload-sneakers', (req, res) => {
 })
 
 app.get('/get-sneakers', (req, res) => {
-  const query = "SELECT * FROM sneakers WHERE original_image != '';"
+  const query = "SELECT * FROM sneakers WHERE original_image != '' and gender = 'men' order by estimated_market_value desc limit 100;"
   db.query(query, (err, result) => {
     if (err) res.send(err)
     else res.send(result)
