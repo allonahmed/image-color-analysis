@@ -4,18 +4,25 @@
   align-items: center;
   padding: 20px 0;
 }
-.sneaker-selection-input{
+.sneaker-selection-input-container{
   width: 75%;
   max-width: 1000px;
+  position: relative;
+}
+.sneaker-selection-input{
+  font-size: 24px;
+  width: 100%;
+  padding: 10px 0px 10px 50px;
   color: #000;
-  background-color: rgb(255, 255, 255);
-  /* border: 1px solid white; */
-  border-bottom: 1px solid black;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  background-color: transparent;
+  border: 3px solid rgb(226, 226, 226);
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   position: relative;
+}
+.sneaker-selection-input:focus{
+  outline-style: none;
 }
 .sneaker-selection-input-img{
   height: 75px;
@@ -33,15 +40,17 @@
   color: #000;
 }
 .options-item {
-  border-bottom: 1px solid #112;
+  border-bottom: 3px solid rgb(226, 226, 226);
+  border-right: 3px solid rgb(226, 226, 226);
+  border-left: 3px solid rgb(226, 226, 226);
   position: relative;
 }
 .options-item > div > h3 {
-  font-size: 14px;
+  font-size: 11px;
 }
 .options-item > div > h2 {
-  font-size: 16px;
+  font-size: 13px;
 }
 .options-item > div > h1 {
-  font-size: 18px;
+  font-size: 15px;
 }

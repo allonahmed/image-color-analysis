@@ -61,9 +61,11 @@ app.post('/upload-sneakers', (req, res) => {
     })
 })
 
-app.get('/get-sneakers', (req, res) => {
-  const query = "SELECT * FROM sneakers WHERE original_image != '' and gender = 'men' order by estimated_market_value desc limit 100;"
-  db.query(query, (err, result) => {
+app.post('/get-sneakers', (req, res) => {
+  const param = `%${req.body.query}%`;
+  console.log(param)
+  const query = `SELECT * FROM sneakers WHERE (original_image != '' and gender = 'men') and (name like ?) order by estimated_market_value desc limit 100;`
+  db.query(query, [param], (err, result) => {
     if (err) res.send(err)
     else res.send(result)
   })
