@@ -2,6 +2,7 @@ const express = require("express"); //import Express (backend framework for node
 const mysql = require("mysql"); // our dbms
 const bodyParser = require("body-parser"); //for getting body of response
 const cors = require("cors");
+const { reset } = require("nodemon");
 
 const app = express()
 app.use(express.json({ limit: '50mb' }));
@@ -58,6 +59,16 @@ app.post('/upload-sneakers', (req, res) => {
         res.send(result)
       }
     })
+})
+
+app.post('/get-sneakers', (req, res) => {
+  const param = `%${req.body.query}%`;
+  console.log(param)
+  const query = `SELECT * FROM sneakers WHERE (original_image != '' and gender = 'men') and (name like ?) order by estimated_market_value desc limit 100;`
+  db.query(query, [param], (err, result) => {
+    if (err) res.send(err)
+    else res.send(result)
+  })
 })
 
 app.use(cors(corsOptions));

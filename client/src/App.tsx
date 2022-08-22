@@ -3,7 +3,7 @@ import './App.css';
 import { DisplayColors } from './components/DispayColors';
 import { ImageUpload } from './components/ImageUpload';
 import { Loading } from './components/Loading';
-import { UploadSneaker } from './api/uploadSneakers';
+import { SneakerSelect } from './components/SneakerSelect';
 
 const App: React.FC = () => {
   const [image, setImage] = useState<File[] | null>(null);
@@ -13,10 +13,10 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <SneakerSelect />
       <ImageUpload setImage={setImage} image={image} />
       <DisplayColors />
       <Loading />
-      <button onClick={UploadSneaker}> upload </button>
     </div>
   );
 };
