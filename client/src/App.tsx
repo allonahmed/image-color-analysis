@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { NavLinks } from './navigation/NavLinks';
+import { Header } from './navigation/Header';
+import { Navigator } from './navigation/Navigator';
+
 import './App.css';
-import { DisplayColors } from './components/DispayColors';
-import { ImageUpload } from './components/ImageUpload';
-import { Loading } from './components/Loading';
-import { SneakerSelect } from './components/SneakerSelect';
 
 const App: React.FC = () => {
-  const [image, setImage] = useState<File[] | null>(null);
-  useEffect(() => {
-    console.log('image state: ', image);
-  }, [image]);
-
   return (
     <div className="App">
-      <SneakerSelect />
-      <ImageUpload setImage={setImage} image={image} />
-      <DisplayColors />
-      <Loading />
+      <Header />
+      <Navigator />
+      <Routes>
+        {NavLinks.map((link, id)=>{
+          return (
+            <Route key={id} path={link.link} element={link.component} />
+          );
+        })}
+      </Routes>
     </div>
   );
 };

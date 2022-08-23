@@ -1,3 +1,3 @@
 import { useAppDispatch, useAppSelector } from './ReduxHooks';
-
-export {useAppDispatch, useAppSelector};
+import { useCurrentPath } from './useCurrentPath';
+export {useAppDispatch, useAppSelector, useCurrentPath};
