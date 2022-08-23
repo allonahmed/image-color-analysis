@@ -4,12 +4,12 @@ import Sneaker from '../pages/Sneaker';
 
 export const NavLinks = [
   {
-    title: 'Home',
+    title: 'Sneaker Pallete',
     link:'/',
     component:<Home/>
   },
   {
-    title: 'Sneaker',
+    title: 'Sneaker Database',
     link:'/sneaker-api',
     component: <Sneaker />
   }
