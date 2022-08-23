@@ -1,8 +1,11 @@
 import React from 'react';
+import { SneakerSelect } from '../components/SneakerSelect';
 
 function Sneaker() {
   return (
-    <div>Sneaker</div>
+    <div>
+      <SneakerSelect />
+    </div>
   );
 }
 

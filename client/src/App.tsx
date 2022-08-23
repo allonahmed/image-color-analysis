@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { NavLinks } from './navigation/NavLinks';
 
 import './App.css';
 
 const App: React.FC = () => {
-  // const [image, setImage] = useState<File[] | null>(null);
-
   return (
     <div className="App">
       <Routes>
