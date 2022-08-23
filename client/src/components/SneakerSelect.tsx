@@ -30,9 +30,9 @@ export const SneakerSelect: React.FunctionComponent = () => {
         </div>
       </div> */}
       <div className='sneaker-selection-input-container'>
-        <div style={{position:'absolute', left: '10px', top: '10px'}}><FiSearch style={{color: '#000', height: '30px', width: '30px'}}/></div>
+        <div style={{position:'absolute', left: '10px', top: '10px'}}><FiSearch style={{color: '#a9a9a9', height: '30px', width: '30px'}}/></div>
         <input type='text' value={query} onChange={(e)=> setQuery(e.target.value)} className='sneaker-selection-input'/>
-        <div style={{position:'absolute', right: '15px', top: '15px'}}><FiX style={{color: '#000', height: '20px', width: '20px'}} onClick={()=>setQuery('')}/></div>
+        <div style={{position:'absolute', right: '15px', top: '15px'}}><FiX style={{color: 'rgb(11,11,11)', height: '20px', width: '20px'}} onClick={()=>setQuery('')}/></div>
       </div>
       <div className='options-container'>
         {
