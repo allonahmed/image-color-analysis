@@ -9,7 +9,15 @@ export const  Navigator = () => {
     <div style={styles.nav}>
       {NavLinks.map((link, id)=>{
         return (
-          <Link key={id} to={link.link} style={styles.link}>{link.title}</Link>
+          <Link 
+            key={id} 
+            to={link.link} 
+            style={{
+              ...styles.link,
+              backgroundColor: useCurrentPath() === link.link ? '#fff' : '#f1f1f1'
+            }}>
+            {link.title}
+          </Link>
         );
       })}
     </div>
@@ -27,6 +35,6 @@ const styles = {
     border: '5px solid #f1f1f1',
     textDecoration: 'none',
     color: 'black',
-    padding: '10px 0'
+    padding: '10px 0',
   }
 };
