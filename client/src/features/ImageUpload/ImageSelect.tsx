@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import { SelectOptions } from './SelectOptions';
 
 import '../../styles/imageupload.css';
-
 
 /**
  * 
@@ -53,6 +53,7 @@ export const ImageSelect : React.FunctionComponent<Props> = ({ closeModal }) => 
     <div className='modal-container'>
       <Header />
       <Navigation />
+      <SelectOptions setImage={setImage} image={image} type={currentNav}/>
     </div>
   );
 };
