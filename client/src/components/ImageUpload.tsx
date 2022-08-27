@@ -1,9 +1,9 @@
 import React, { useRef, SetStateAction } from 'react';
 import { IoIosImages } from 'react-icons/io';
 import { UploadImage } from '../api/uploadImage';
-import { updateImageColors } from '../redux/reducers/image';
+import { updateImageColors, updateImage } from '../redux/reducers/image';
 import { updateLoading } from '../redux/reducers/system';
-import { useAppDispatch } from '../hooks';
+import { useAppDispatch, useAppSelector } from '../hooks';
 
 import '../styles/inputimage.css';
 
@@ -19,7 +19,9 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
 
   const onFileChange = (e: any) => {
     setImage(e.target.files);
+    dispatch(updateImage(URL.createObjectURL(e.target.files[0])));
   };
+
   const refFileChange = () => {
     inputFileRef.current.click();
   };

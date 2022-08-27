@@ -6,7 +6,7 @@ export type imageColors = {
 };
 
 export type imageState = {
-  image: File | null;
+  image: any;
   imageColors: Array<imageColors> | null;
 };
 
@@ -19,7 +19,7 @@ const imageSlice = createSlice({
   name: 'image',
   initialState: initialState,
   reducers: {
-    updateImage: (state, action: PayloadAction<File>) => {
+    updateImage: (state, action: any) => {
       state.image = action.payload;
     },
     updateImageColors: (state, action: PayloadAction<imageColors[]>) => {
