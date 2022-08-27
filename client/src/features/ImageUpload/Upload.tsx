@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import { ImageSelect } from './ImageSelect';
 import { IoImagesOutline } from 'react-icons/io5';
+import { useAppSelector } from '../../hooks';
 
 import '../../styles/imageupload.css';
 
