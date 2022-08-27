@@ -13,6 +13,7 @@
   border: none;
   box-shadow: inset #d8d8da 0 0 0 1px;
   transition: box-shadow .3s linear;
+  cursor: pointer;
 }
 .modal-button:active{
   background-color: #ebebeb; 
@@ -45,6 +46,7 @@
   top: 16px;
   right: 16px;
   font-size: 28px;
+  cursor: pointer;
 }
 .modal-navigation {
   display: flex;
@@ -60,6 +62,7 @@
   box-sizing: border-box;
   color: #636363;
   box-shadow: none;
+  cursor: pointer;
 }
 .active-link {
   color: #0066ff;
