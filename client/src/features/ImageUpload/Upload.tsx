@@ -55,14 +55,14 @@ const styles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    height:'450px',
-    width: '600px',
+    flex: 1,
+    width: '500px',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     padding: 0,
     border: '1px solid #b6b6b6',
     boxShadow:'0 0 20px #4a4a4a6f',
-    borderRadius: '15px'
+    borderRadius: '15px',
   },
   overlay: {
     top: 0,

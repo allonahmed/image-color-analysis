@@ -3,9 +3,8 @@ import { IoIosImages } from 'react-icons/io';
 import { UploadImage } from '../../api/uploadImage';
 import { updateImageColors, updateImage } from '../../redux/reducers/image';
 import { updateLoading } from '../../redux/reducers/system';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 
-import '../../styles/inputimage.css';
 
 type Props = {
   image: File[] | null;
@@ -27,34 +26,18 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <form onSubmit={(event) => {
-      dispatch(updateLoading(true));
-      UploadImage(event, image).then((res) => {
-        dispatch(updateLoading(false));
-        dispatch(updateImageColors(res));
-      });
-    }}
-    className='image-upload-form'>
-      <div
-        className={image ? 'image-container' : 'image-container hover-upload'}
-        onClick={() => image === null && refFileChange()}
-      >
-        <>
-          <IoIosImages />
-          <h3>Upload Image</h3>
-        </>
-      </div>
-      <div>
-        <input
-          type="file"
-          alt='image upload'
-          accept="image/png, image/jpeg, image/jpg"
-          ref={inputFileRef}
-          onChange={onFileChange}
-        />
-        <input type='submit' name="Submit" />
-      </div>
-    </form>
+    <div onClick={refFileChange} className='image-upload-form'>
+      <input 
+        type="file"
+        alt='image upload'
+        accept="image/png, image/jpeg, image/jpg"
+        ref={inputFileRef}
+        onChange={onFileChange}
+        style={{display:'none'}}
+      />
+      <IoIosImages />
+      <p>Upload Image</p>
+    </div>
 
   );
 };

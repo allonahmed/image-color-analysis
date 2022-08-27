@@ -31,8 +31,8 @@ export const ImageSelect : React.FunctionComponent<Props> = ({ closeModal }) => 
             >
               {item}
             </button> 
-          );}
-        )}
+          );
+        })}
       </div>
     );
   };
