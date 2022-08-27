@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=inter');
+
+
 .App {
   text-align: center;
   background-color: rgb(255, 255, 255);
   color: black;
   min-height: 100vh;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
 }
 
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Inter', sans-serif;
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { NavLinks } from './NavLinks';
 import { useCurrentPath } from '../hooks';
 
+
 export const  Navigator = () => {
   console.log(useCurrentPath());
   return (
