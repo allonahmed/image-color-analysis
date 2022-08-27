@@ -17,7 +17,9 @@ const styles = {
     width: '600px',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
-    padding: 0
+    padding: 0,
+    border: '1px solid #b6b6b6',
+    borderRadius: '10px'
   },
 };
 
@@ -51,7 +53,6 @@ export const Upload : React.FunctionComponent = () => {
         style={styles}
         contentLabel="Example Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
         <ImageSelect />
       </Modal>
     </div>
