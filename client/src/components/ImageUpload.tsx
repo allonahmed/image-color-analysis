@@ -55,5 +55,6 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
         <input type='submit' name="Submit" />
       </div>
     </form>
+
   );
 };
