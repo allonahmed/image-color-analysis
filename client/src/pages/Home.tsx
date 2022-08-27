@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { ImageUpload } from '../components/ImageUpload';
+import { ImageUpload } from '../features/ImageUpload/ImageUpload';
 import { Upload } from '../features/ImageUpload/Upload';
 
 function Home() {

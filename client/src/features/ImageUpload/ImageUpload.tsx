@@ -1,11 +1,11 @@
 import React, { useRef, SetStateAction } from 'react';
 import { IoIosImages } from 'react-icons/io';
-import { UploadImage } from '../api/uploadImage';
-import { updateImageColors, updateImage } from '../redux/reducers/image';
-import { updateLoading } from '../redux/reducers/system';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import { UploadImage } from '../../api/uploadImage';
+import { updateImageColors, updateImage } from '../../redux/reducers/image';
+import { updateLoading } from '../../redux/reducers/system';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
-import '../styles/inputimage.css';
+import '../../styles/inputimage.css';
 
 type Props = {
   image: File[] | null;
@@ -39,12 +39,10 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
         className={image ? 'image-container' : 'image-container hover-upload'}
         onClick={() => image === null && refFileChange()}
       >
-        {image ?
-          <img src={URL.createObjectURL(image[0])} alt="file uploaded" className="uploaded-image" /> :
-          <>
-            <IoIosImages />
-            <h3>Upload Image</h3>
-          </>}
+        <>
+          <IoIosImages />
+          <h3>Upload Image</h3>
+        </>
       </div>
       <div>
         <input

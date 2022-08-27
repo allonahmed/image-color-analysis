@@ -3,6 +3,7 @@ import { IoMdClose } from 'react-icons/io';
 
 import '../../styles/imageupload.css';
 
+
 /**
  * 
  * @returns modal for image selecting 
@@ -14,6 +15,7 @@ type Props = {
 
 export const ImageSelect : React.FunctionComponent<Props> = ({ closeModal }) => {
   const [currentNav, setNav] = useState<string>('Upload');
+  const [image, setImage] = useState<File[] | null>(null);
 
   const Navigation : React.FunctionComponent = () => {
     return (
