@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {IoMdClose} from 'react-icons/io';
+import { ImageUpload } from './ImageUpload';
 /**
  * 
  * @returns modal for image selecting 
@@ -25,9 +26,8 @@ export const ImageSelect : React.FunctionComponent = () => {
               }}
             >
               {item}
-            </button>
-          );
-        })}
+            </button> 
+          );})}
       </div>
     );
   };
@@ -39,8 +39,8 @@ export const ImageSelect : React.FunctionComponent = () => {
           size={24} 
           style={{  
             position: 'absolute',
-            right: '10px',
-            top: '14px'
+            right: '19px',
+            top: '19px'
           }}
         />
         <h3 style={{fontSize: '18px'}}>
@@ -48,9 +48,7 @@ export const ImageSelect : React.FunctionComponent = () => {
         </h3>
       </div>
       <Navigation />
-      <div>
-        image upload if image upload
-      </div>
+      
     </div>
   );
 };
@@ -65,7 +63,7 @@ const styles = {
   header:{
     display:'flex',
     justifyContent:'center',
-    padding: '15px 0',
+    padding: '20px 0',
   },
   close: {
 
@@ -77,7 +75,7 @@ const styles = {
     borderTop: '1px solid #b6b6b6',
   },
   navButton: {
-    padding: '10px 10px',
+    padding: '20px 10px',
     margin: '0 0px',
     backgroundColor: 'transparent',
     fontSize: '18px',

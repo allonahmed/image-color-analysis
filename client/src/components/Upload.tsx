@@ -13,12 +13,13 @@ const styles = {
     left: '50%',
     right: 'auto',
     bottom: 'auto',
-    height:'400px',
+    height:'450px',
     width: '600px',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     padding: 0,
     border: '1px solid #b6b6b6',
+    boxShadow:'0 0 20px #4a4a4a6f',
     borderRadius: '15px'
   },
   overlay: {
@@ -26,7 +27,7 @@ const styles = {
     left: 0,
     width: '100vw',
     height: '100vh',
-    background: 'rgba(0, 0, 0, 0.25)',
+    background: 'rgba(0, 0, 0, 0.5)',
   },
 };
 
