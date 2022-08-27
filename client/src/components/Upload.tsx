@@ -19,7 +19,14 @@ const styles = {
     transform: 'translate(-50%, -50%)',
     padding: 0,
     border: '1px solid #b6b6b6',
-    borderRadius: '10px'
+    borderRadius: '15px'
+  },
+  overlay: {
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    background: 'rgba(0, 0, 0, 0.25)',
   },
 };
 
@@ -52,6 +59,7 @@ export const Upload : React.FunctionComponent = () => {
         onRequestClose={closeModal}
         style={styles}
         contentLabel="Example Modal"
+        appElement={document.getElementById('root') as HTMLElement}
       >
         <ImageSelect />
       </Modal>

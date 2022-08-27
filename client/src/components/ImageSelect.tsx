@@ -11,7 +11,7 @@ export const ImageSelect : React.FunctionComponent = () => {
   const Navigation : React.FunctionComponent = () => {
     return (
       <div style={styles.navigation}>
-        {['Upload', 'URL', 'Camera'].map((item, id: number) => {
+        {['Upload', 'URL', 'Camera', 'Stock'].map((item, id: number) => {
           return (
             <button 
               key={id} 
@@ -31,8 +31,6 @@ export const ImageSelect : React.FunctionComponent = () => {
       </div>
     );
   };
-
-  console.log(currentNav);
 
   return (
     <div style={styles.container}>
