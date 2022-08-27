@@ -2,7 +2,7 @@ import React, { useRef, SetStateAction } from 'react';
 import { IoIosImages } from 'react-icons/io';
 import { UploadImage } from '../../api/uploadImage';
 import { updateImageColors, updateImage } from '../../redux/reducers/image';
-import { updateLoading } from '../../redux/reducers/system';
+import { updateLoading, updateModal } from '../../redux/reducers/system';
 import { useAppDispatch } from '../../hooks';
 
 
@@ -17,8 +17,14 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
   const dispatch = useAppDispatch();
 
   const onFileChange = (e: any) => {
-    setImage(e.target.files);
     dispatch(updateImage(URL.createObjectURL(e.target.files[0])));
+    dispatch(updateLoading(true));
+    UploadImage(e, e.target.files).then((res) => {
+      dispatch(updateImageColors(res));
+      dispatch(updateLoading(false));
+    }).then(()=> {
+      dispatch(updateModal(false));
+    });
   };
 
   const refFileChange = () => {
@@ -38,6 +44,5 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
       <IoIosImages />
       <p>Upload Image</p>
     </div>
-
   );
 };
