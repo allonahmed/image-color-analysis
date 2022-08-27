@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FiChevronUp, FiChevronDown, FiCheck, FiX, FiSearch } from 'react-icons/fi';
 
-import '../styles/sneakerselect.css';
+import '../../styles/sneakerselect.css';
 
 export const SneakerSelect: React.FunctionComponent = () => {
   const [options, setOptions] = useState<any>(null);

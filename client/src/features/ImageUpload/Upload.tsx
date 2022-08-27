@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { ImageSelect } from './ImageSelect';
 import { IoImagesOutline } from 'react-icons/io5';
 
-import '../styles/imageupload.css';
+import '../../styles/imageupload.css';
 
 /**
  * 

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { ImageUpload } from '../components/ImageUpload';
-import { Upload } from '../components/Upload';
+import { Upload } from '../features/ImageUpload/Upload';
 
 function Home() {
   const [image, setImage] = useState<File[] | null>(null);

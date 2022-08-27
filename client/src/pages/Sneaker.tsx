@@ -1,5 +1,5 @@
 import React from 'react';
-import { SneakerSelect } from '../components/SneakerSelect';
+import { SneakerSelect } from '../features/sneakerRender/SneakerSelect';
 
 function Sneaker() {
   return (

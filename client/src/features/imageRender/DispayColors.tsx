@@ -1,6 +1,6 @@
 import React from 'react';
-import { useAppSelector } from '../hooks';
-import { imageColors } from '../redux/reducers/image';
+import { useAppSelector } from '../../hooks';
+import { imageColors } from '../../redux/reducers/image';
 
 const toPercent = (number: number) => {
   return `${Math.floor(number * 100)}%`;

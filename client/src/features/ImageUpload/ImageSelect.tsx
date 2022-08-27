@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 
-import '../styles/imageupload.css';
+import '../../styles/imageupload.css';
 
 /**
  * 
