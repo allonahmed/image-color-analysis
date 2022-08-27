@@ -1,11 +1,53 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { ImageSelect } from './ImageSelect';
+import { IoImagesOutline } from 'react-icons/io5';
+
+import '../styles/imageupload.css';
 
 /**
  * 
  * @returns button that opens image upload modal
  */
+
+//references what app element will be linked to the modal
+Modal.setAppElement('#modal');
+
+export const Upload : React.FunctionComponent = () => {
+  let subtitle : HTMLElement | null;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  //example for reference
+  const afterOpenModal = () => {
+    // references are now sync'd and can be accessed.
+    subtitle ? subtitle.style.color = '#f00' : null;
+  };
+
+  return (
+    <div className='modal-button-container'>
+      <button onClick={openModal} className='modal-button'>
+        Select Image
+        <IoImagesOutline className='modal-image-button'/>
+      </button>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={styles}
+        appElement={document.getElementById('root') as HTMLElement}
+      >
+        <ImageSelect closeModal={()=>setIsOpen(false)}/>
+      </Modal>
+    </div>
+  );
+};
 
 const styles = {
   content: {
@@ -29,41 +71,4 @@ const styles = {
     height: '100vh',
     background: 'rgba(0, 0, 0, 0.5)',
   },
-};
-
-//references what app element will be linked to the modal
-Modal.setAppElement('#modal');
-
-export const Upload : React.FunctionComponent = () => {
-  let subtitle : HTMLElement | null;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  //example for reference
-  const afterOpenModal = () => {
-    // references are now sync'd and can be accessed.
-    subtitle ? subtitle.style.color = '#f00' : null;
-  };
-
-  return (
-    <div>
-      <button onClick={openModal}>Open Modal</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={styles}
-        contentLabel="Example Modal"
-        appElement={document.getElementById('root') as HTMLElement}
-      >
-        <ImageSelect />
-      </Modal>
-    </div>
-  );
 };
