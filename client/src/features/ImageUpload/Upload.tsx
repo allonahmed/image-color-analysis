@@ -2,8 +2,10 @@ import React from 'react';
 import Modal from 'react-modal';
 import { ImageSelect } from './ImageSelect';
 import { IoImagesOutline } from 'react-icons/io5';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 
 import '../../styles/imageupload.css';
+import { updateModal } from '../../redux/reducers/system';
 
 /**
  * 
@@ -15,13 +17,14 @@ Modal.setAppElement('#modal');
 
 export const Upload : React.FunctionComponent = () => {
   let subtitle : HTMLElement | null;
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const isOpen = useAppSelector(state=>state.system.modalOpen);
+  const dispatch = useAppDispatch();
 
   const openModal = () => {
-    setIsOpen(true);
+    dispatch(updateModal(true));
   };
   const closeModal = () => {
-    setIsOpen(false);
+    dispatch(updateModal(false));
   };
 
   //example for reference
@@ -37,13 +40,13 @@ export const Upload : React.FunctionComponent = () => {
         <IoImagesOutline className='modal-image-button'/>
       </button>
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={isOpen}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={styles}
-        appElement={document.getElementById('root') as HTMLElement}
+        // appElement={document.getElementById('root') as HTMLElement}
       >
-        <ImageSelect closeModal={()=>setIsOpen(false)}/>
+        <ImageSelect closeModal={closeModal}/>
       </Modal>
     </div>
   );
@@ -60,8 +63,8 @@ const styles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     padding: 0,
-    border: '1px solid #b6b6b6',
-    boxShadow:'0 0 20px #4a4a4a6f',
+    border: 'none',
+    boxShadow:'0 0 20px #0000006e',
     borderRadius: '15px',
   },
   overlay: {

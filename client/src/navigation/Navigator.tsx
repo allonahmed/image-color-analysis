@@ -2,40 +2,36 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { NavLinks } from './NavLinks';
 import { useCurrentPath } from '../hooks';
+import { IoBagAddSharp, IoLogIn, IoSettingsSharp } from 'react-icons/io5';
+import logo from '../assets/icons/fflogo.png';
 
+import '../styles/header.css';
 
 export const  Navigator = () => {
   console.log(useCurrentPath());
   return (
-    <div style={styles.nav}>
+    <div className='navigation'>
+      <img src={logo} className='navigation-logo'/>
       {NavLinks.map((link, id)=>{
         return (
           <Link 
             key={id} 
             to={link.link} 
-            style={{
-              ...styles.link,
-              backgroundColor: useCurrentPath() === link.link ? '#fff' : '#f1f1f1'
-            }}>
+            className={useCurrentPath() === link.link ? 
+              'navigation-link active-navigation-link': 
+              'navigation-link'}
+          >
             {link.title}
           </Link>
         );
       })}
+      <div className='nav-icon-container'>
+        <IoBagAddSharp className='nav-icons' style={{fontSize: '24px', color: '#FDB777'}}/>
+        <IoSettingsSharp className='nav-icons' style={{fontSize: '24px', color: '#FD9346'}}/>
+        <IoLogIn className='nav-icons' style={{fontSize: '30px', color: '#FD7F2C'}}/>
+      </div>
     </div>
   );
 };
 
-const styles = {
-  nav:{
-    display:'flex'
-  },
-  link:{
-    width: `calc(100% / ${NavLinks.length})`,
-    display: 'flex',
-    justifyContent: 'center',
-    border: '5px solid #f1f1f1',
-    textDecoration: 'none',
-    color: 'black',
-    padding: '10px 0',
-  }
-};
+

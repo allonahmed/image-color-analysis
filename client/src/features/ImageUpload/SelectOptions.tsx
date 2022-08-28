@@ -12,7 +12,7 @@ export const SelectOptions : React.FunctionComponent<Props> = ({
 }) => {
   switch(type) {
     case 'Upload':
-      return <ImageUpload image={image} setImage={setImage}/>;
+      return <ImageUpload />;
     default:
       return <div>no component yet</div>;
   }

@@ -1,21 +1,13 @@
 import React from 'react';
+import '../styles/header.css';
+import logo from '../assets/icons/fflogo.png';
 
 export const Header = () => {
   return (
-    <div style={styles.header}><h1 style={styles.title}>Match My Heat</h1></div>
+    <div className='header'>
+      {/* <h1 className='header-title'>Header goes here</h1> */}
+      <img src={logo} className='header-logo'/>
+    </div>
   );
 };
 
-const styles = {
-  header: {
-    height: '10vh',
-    maxHeight: '100px',
-    backgroundColor: '#f1f1f1',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  title: {
-    color: '40px'
-  }
-};

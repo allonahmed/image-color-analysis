@@ -1,24 +1,23 @@
-import React, { useRef, SetStateAction } from 'react';
+import React, { useRef } from 'react';
 import { IoIosImages } from 'react-icons/io';
 import { UploadImage } from '../../api/uploadImage';
 import { updateImageColors, updateImage } from '../../redux/reducers/image';
-import { updateLoading } from '../../redux/reducers/system';
+import { updateLoading, updateModal } from '../../redux/reducers/system';
 import { useAppDispatch } from '../../hooks';
 
-
-type Props = {
-  image: File[] | null;
-  setImage: React.Dispatch<SetStateAction<File[] | null>>
-}
-export const ImageUpload: React.FunctionComponent<Props> = ({
-  setImage, image
-}) => {
+export const ImageUpload: React.FunctionComponent = () => {
   const inputFileRef = useRef<any>(null);
   const dispatch = useAppDispatch();
 
   const onFileChange = (e: any) => {
-    setImage(e.target.files);
     dispatch(updateImage(URL.createObjectURL(e.target.files[0])));
+    dispatch(updateLoading(true));
+    UploadImage(e.target.files, e).then((res) => {
+      dispatch(updateImageColors(res));
+      dispatch(updateLoading(false));
+    }).then(()=> {
+      dispatch(updateModal(false));
+    });
   };
 
   const refFileChange = () => {
@@ -35,9 +34,8 @@ export const ImageUpload: React.FunctionComponent<Props> = ({
         onChange={onFileChange}
         style={{display:'none'}}
       />
-      <IoIosImages />
-      <p>Upload Image</p>
+      <IoIosImages size={34}/>
+      <p>Upload an image</p>
     </div>
-
   );
 };

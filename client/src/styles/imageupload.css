@@ -2,30 +2,60 @@
 
 /* modal button */
 .modal-button-container{
-  flex: 1;
+  
 }
 .modal-button {
   position: relative;
-  background-color: transparent;
+  background-color: #fff;
   width: 400px;
-  padding: 15px 0;
-  border-radius: 15px;
-  border: none;
-  box-shadow: inset #d8d8da 0 0 0 1px;
-  transition: box-shadow .3s linear;
+  padding: 20px 0;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #353535;
   cursor: pointer;
+  background-clip: padding-box; /* !importanté */
+  border: solid 3px transparent; /* !importanté */
+}
+.modal-button:before{
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
+  margin: -3px; /* !importanté */
+  border-radius: inherit; /* !importanté */
+  background: linear-gradient(to right, #FDB777, #FDB777, #FDB777, #FD7F2C, #FF6200);
+  /* transition: all .5s ease-in-out; */
 }
 .modal-button:active{
-  background-color: #ebebeb; 
+  background-color: rgb(250, 250, 250); 
 }
-.modal-button:hover{
-  box-shadow: inset #959595 0 0 0 1px;
+.modal-button:hover:before{
+  background: linear-gradient(to left,  #FF6200, #FD7F2C, #FDB777, #FDB777, #FDB777);
+  animation: flip .5s ease-in-out;
+}
+@keyframes flip {
+  100%{
+    background: linear-gradient(to left, #FDB777, #FDA766, #FD9346, #FD7F2C, #FF6200);
+  }
+  75%{
+    background: linear-gradient(to left, #FDB777, #FDA766, #FD9346, #FF6200, #FD7F2C);
+  }
+  50%{
+    background: linear-gradient(to left,  #FDB777, #FDA766, #FF6200, #FD7F2C, #FD9346);
+  }
+  25%{
+    background: linear-gradient(to left,  #FDB777, #FF6200, #FD7F2C, #FD9346, #FDA766);
+  }
+  0%{
+    background: linear-gradient(to left,  #FF6200, #FD7F2C, #FDB777, #FDB777, #FDB777);
+  }
 }
 .modal-image-button {
   position: absolute;
-  top: 12px;
+  top: 17px;
   right: 15px;
-  font-size: 20px;
+  font-size: 22px;
+  color: #353535;
 }
 
 /* modal popup */
@@ -44,12 +74,19 @@
   justify-content: center;
   padding: 20px 0;
   width: 100%;
+  background-color: #222;
+}
+.modal-header > h3 {
+  background: -webkit-linear-gradient(190deg,#FF6200, #FDB777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .modal-exit-button {
   position: absolute;
   top: 16px;
   right: 16px;
   font-size: 28px;
+  color: #FF6200;
   cursor: pointer;
 }
 .modal-navigation {
@@ -73,26 +110,32 @@
   color: black;
 }
 .active-link {
-  color: #0066ff;
-  box-shadow: #0066ff 0 1px 0 0, inset #0066ff 0 -1px 0 0;
+  color: #FF6200;
+  box-shadow: #FF6200 0 1px 0 0, inset #FF6200 0 -1px 0 0;
 }
 .active-link:hover {
-  color: #0066ff;
+  color: #FF6200;
 }
 
 /* Image Upload component */
 .image-upload-form {
   margin: 20px 0;
-  height: 200px;
-  width: 400px;
+  height: 250px;
+  width: 450px;
   border: 3px dashed rgba(0,0,0,.075);
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   cursor: pointer;
   color: #636363;
 }
 .image-upload-form:hover {
   border: 3px dashed rgba(0,0,0,.15);
+}
+
+.image-upload-form > p {
+  padding: 10px;
+  font-size: 18px;
 }

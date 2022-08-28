@@ -1,13 +1,19 @@
-import React, {useState} from 'react';
-import { ImageUpload } from '../features/ImageUpload/ImageUpload';
+import React from 'react';
+import { DisplayColors } from '../features/imageRender/DispayColors';
 import { Upload } from '../features/ImageUpload/Upload';
+import { SneakerSelect } from '../features/sneakerRender/SneakerSelect';
+
+import '../styles/home.css';
 
 function Home() {
-  const [image, setImage] = useState<File[] | null>(null);
   return (
-    <div>
-      <ImageUpload image={image} setImage={setImage}/>
-      <Upload />
+    <div className='home-container'>
+      <div style={{display:'flex', justifyContent:'center', height: '100px'}}>
+        <Upload />
+        <p style={{padding: '20px 20px', fontSize: '20px'}}>or</p>
+        <SneakerSelect />
+      </div>
+      <DisplayColors />
     </div>
   );
 }

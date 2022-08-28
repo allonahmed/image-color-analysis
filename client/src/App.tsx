@@ -5,12 +5,14 @@ import { Header } from './navigation/Header';
 import { Navigator } from './navigation/Navigator';
 
 import './App.css';
+import { Loading } from './components/Loading';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <Navigator />
+      <Loading />
       <Routes>
         {NavLinks.map((link, id)=>{
           return (
