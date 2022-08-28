@@ -8,22 +8,23 @@
   position: relative;
   background-color: transparent;
   width: 400px;
-  padding: 15px 0;
+  padding: 20px 0;
   border-radius: 15px;
   border: none;
-  box-shadow: inset #d8d8da 0 0 0 1px;
+  box-shadow: inset #FD9346 0 0 0 1px;
   transition: box-shadow .3s linear;
   cursor: pointer;
 }
 .modal-button:active{
-  background-color: #ebebeb; 
+  background-color: #222; 
+  color: #FD9346;
 }
 .modal-button:hover{
-  box-shadow: inset #959595 0 0 0 1px;
+  box-shadow: inset #FF6200 0 0 0 1px;
 }
 .modal-image-button {
   position: absolute;
-  top: 12px;
+  top: 17px;
   right: 15px;
   font-size: 20px;
 }
@@ -44,12 +45,19 @@
   justify-content: center;
   padding: 20px 0;
   width: 100%;
+  background-color: #222;
+}
+.modal-header > h3 {
+  background: -webkit-linear-gradient(190deg,#FF6200, #FDB777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .modal-exit-button {
   position: absolute;
   top: 16px;
   right: 16px;
   font-size: 28px;
+  color: #FF6200;
   cursor: pointer;
 }
 .modal-navigation {
@@ -73,11 +81,11 @@
   color: black;
 }
 .active-link {
-  color: #0066ff;
-  box-shadow: #0066ff 0 1px 0 0, inset #0066ff 0 -1px 0 0;
+  color: #FF6200;
+  box-shadow: #FF6200 0 1px 0 0, inset #FF6200 0 -1px 0 0;
 }
 .active-link:hover {
-  color: #0066ff;
+  color: #FF6200;
 }
 
 /* Image Upload component */
@@ -90,9 +98,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   cursor: pointer;
   color: #636363;
 }
 .image-upload-form:hover {
   border: 3px dashed rgba(0,0,0,.15);
+}
+
+.image-upload-form > p {
+  padding: 10px;
+  font-size: 18px;
 }

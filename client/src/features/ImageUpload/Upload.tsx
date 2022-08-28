@@ -63,8 +63,8 @@ const styles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     padding: 0,
-    border: '1px solid #b6b6b6',
-    boxShadow:'0 0 20px #4a4a4a6f',
+    border: 'none',
+    boxShadow:'0 0 20px #0000006e',
     borderRadius: '15px',
   },
   overlay: {

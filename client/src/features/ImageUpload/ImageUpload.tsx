@@ -34,8 +34,8 @@ export const ImageUpload: React.FunctionComponent = () => {
         onChange={onFileChange}
         style={{display:'none'}}
       />
-      <IoIosImages />
-      <p>Upload Image</p>
+      <IoIosImages size={34}/>
+      <p>Upload an image</p>
     </div>
   );
 };
