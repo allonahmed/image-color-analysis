@@ -5,33 +5,82 @@
   padding: 20px 0;
 }
 .sneaker-selection-input-container{
-  width: 75%;
+  width: 400px;
   max-width: 1000px;
   position: relative;
+  background-clip: padding-box; /* !importanté */
+  border: solid 2px transparent; /* !importanté */
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 1px 0 0 1px;
 }
 .sneaker-selection-input{
-  font-size: 24px;
+  font-size: 16px;
   width: 100%;
-  padding: 10px 0px 10px 50px;
-  color: #000;
-  background-color: transparent;
-  border: 3px solid rgb(226, 226, 226);
+  padding: 20px 0px 20px 50px;
   box-sizing: border-box;
+  color: #353535;
+  background: #fff;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   position: relative;
+  border:none;
 }
+.sneaker-selection-input-container::after{
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
+  margin: -2px; /* !importanté */
+  border-radius: inherit; /* !importanté */
+  background: linear-gradient(to left, #FDB777, #FDB777, #FDB777, #FD7F2C, #FF6200);
+}
+.sneaker-selection-input-container:hover:after{
+  background: linear-gradient(to right,  #FF6200, #FD7F2C, #FDB777, #FDB777, #FDB777);
+  animation: flip .5s ease-in-out;
+}
+@keyframes flip {
+  0%{
+    background: linear-gradient(to left, #FDB777, #FDA766, #FD9346, #FD7F2C, #FF6200);
+  }
+  25%{
+    background: linear-gradient(to left, #FDB777, #FDA766, #FD9346, #FF6200, #FD7F2C);
+  }
+  50%{
+    background: linear-gradient(to left,  #FDB777, #FDA766, #FF6200, #FD7F2C, #FD9346);
+  }
+  75%{
+    background: linear-gradient(to left,  #FDB777, #FF6200, #FD7F2C, #FD9346, #FDA766)
+  }
+  100%{
+    background: linear-gradient(to left,  #FF6200, #FD7F2C, #FDB777, #FDB777, #FDB777);
+  }
+}
+
 .sneaker-selection-input:focus{
-  outline-style: none;
+  border: none;
+  outline: none;
+  /* box-shadow: inset #FF6200 0 0 0 3px; */
 }
-.sneaker-selection-input-img{
-  height: 75px;
-  width: 75px;
-  margin: 0 20px;
+.sneaker-selection-input::placeholder {
+  color:#a5a5a5;
 }
-.arrow-container {
+.input-search-icon{
+  z-index: 100;
+  color: #646464;
+  position: absolute;
+  left: 10px;
+  top: 14px;
+  font-size: 26px;
+}
+.input-delete-icon{
+  z-index: 100;
+  color: #646464;
   position: absolute;
   right: 10px;
+  top: 17px;
+  font-size: 22px;
 }
 .options-container{
   width: 75%;

@@ -2,31 +2,60 @@
 
 /* modal button */
 .modal-button-container{
-  flex: 1;
+  
 }
 .modal-button {
   position: relative;
-  background-color: transparent;
+  background-color: #fff;
   width: 400px;
   padding: 20px 0;
-  border-radius: 15px;
-  border: none;
-  box-shadow: inset #FD9346 0 0 0 1px;
-  transition: box-shadow .3s linear;
+  border-radius: 10px;
+  font-size: 16px;
+  color: #353535;
   cursor: pointer;
+  background-clip: padding-box; /* !importanté */
+  border: solid 3px transparent; /* !importanté */
+}
+.modal-button:before{
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  z-index: -1;
+  margin: -3px; /* !importanté */
+  border-radius: inherit; /* !importanté */
+  background: linear-gradient(to right, #FDB777, #FDB777, #FDB777, #FD7F2C, #FF6200);
+  /* transition: all .5s ease-in-out; */
 }
 .modal-button:active{
-  background-color: #222; 
-  color: #FD9346;
+  background-color: rgb(250, 250, 250); 
 }
-.modal-button:hover{
-  box-shadow: inset #FF6200 0 0 0 1px;
+.modal-button:hover:before{
+  background: linear-gradient(to left,  #FF6200, #FD7F2C, #FDB777, #FDB777, #FDB777);
+  animation: flip .5s ease-in-out;
+}
+@keyframes flip {
+  100%{
+    background: linear-gradient(to left, #FDB777, #FDA766, #FD9346, #FD7F2C, #FF6200);
+  }
+  75%{
+    background: linear-gradient(to left, #FDB777, #FDA766, #FD9346, #FF6200, #FD7F2C);
+  }
+  50%{
+    background: linear-gradient(to left,  #FDB777, #FDA766, #FF6200, #FD7F2C, #FD9346);
+  }
+  25%{
+    background: linear-gradient(to left,  #FDB777, #FF6200, #FD7F2C, #FD9346, #FDA766);
+  }
+  0%{
+    background: linear-gradient(to left,  #FF6200, #FD7F2C, #FDB777, #FDB777, #FDB777);
+  }
 }
 .modal-image-button {
   position: absolute;
   top: 17px;
   right: 15px;
-  font-size: 20px;
+  font-size: 22px;
+  color: #353535;
 }
 
 /* modal popup */
