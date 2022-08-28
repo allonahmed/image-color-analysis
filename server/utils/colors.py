@@ -12,7 +12,8 @@ def ct_pallete_colors(image_path):
 #using Pillow library to generate colors in image
 def get_colors(image_path):
     image = Image.open(image_path);
-    return image.getcolors(maxcolors=80000006)
+    img = image.convert("RGBA")
+    return img.getcolors(maxcolors=80000006)
 
 path = '../assets/flag.png'
 
@@ -27,7 +28,7 @@ def total_pixels(path):
     return image_size[0] * image_size[1]
 
 #returns accurate pallete of image (returns rgba of most popular pixel colors)
-def get_color_pallete(path, count = 3):
+def get_color_pallete(path, count = 200):
     colors = sort_list(get_colors(path))
     pixels = total_pixels(path)
     pallete = []
@@ -38,5 +39,24 @@ def get_color_pallete(path, count = 3):
             })
     return pallete
 
+def convertImage(path):
+    img = Image.open(path)
+    img = img.convert("RGBA")
+ 
+    datas = img.getdata()
+ 
+    newData = []
+ 
+    for item in datas:
+        if item[0] == 255 and item[1] == 255 and item[2] == 255:
+            newData.append((255, 255, 255, 0))
+        else:
+            newData.append(item)
+ 
+    img.putdata(newData)
+    img.save("./New.png", "PNG")
+    print("Successful")
+
+convertImage()
 
 # def get_color_percentage(path, count):

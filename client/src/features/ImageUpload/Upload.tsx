@@ -44,7 +44,7 @@ export const Upload : React.FunctionComponent = () => {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={styles}
-        appElement={document.getElementById('root') as HTMLElement}
+        // appElement={document.getElementById('root') as HTMLElement}
       >
         <ImageSelect closeModal={closeModal}/>
       </Modal>

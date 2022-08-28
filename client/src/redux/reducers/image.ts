@@ -8,11 +8,13 @@ export type imageColors = {
 export type imageState = {
   image: any;
   imageColors: Array<imageColors> | null;
+  current: any
 };
 
 const initialState: imageState = {
   image: null,
-  imageColors: null
+  imageColors: null,
+  current: null
 };
 
 const imageSlice = createSlice({
@@ -24,10 +26,13 @@ const imageSlice = createSlice({
     },
     updateImageColors: (state, action: PayloadAction<imageColors[]>) => {
       state.imageColors = action.payload;
+    },
+    updateCurrent: (state, action: PayloadAction<any>) => {
+      state.current = action.payload;
     }
   }
 });
 
-export const { updateImage, updateImageColors } = imageSlice.actions;
+export const { updateImage, updateImageColors, updateCurrent } = imageSlice.actions;
 
 export default imageSlice.reducer;

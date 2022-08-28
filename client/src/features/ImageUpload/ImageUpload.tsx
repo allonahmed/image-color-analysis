@@ -12,7 +12,7 @@ export const ImageUpload: React.FunctionComponent = () => {
   const onFileChange = (e: any) => {
     dispatch(updateImage(URL.createObjectURL(e.target.files[0])));
     dispatch(updateLoading(true));
-    UploadImage(e, e.target.files).then((res) => {
+    UploadImage(e.target.files, e).then((res) => {
       dispatch(updateImageColors(res));
       dispatch(updateLoading(false));
     }).then(()=> {

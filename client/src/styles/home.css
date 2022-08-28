@@ -1,4 +1,6 @@
 .home-container {
   /* box-shadow: inset 0 0 500px #000; */
-  /* width: 900px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
