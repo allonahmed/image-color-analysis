@@ -10,7 +10,7 @@ import { Loading } from './components/Loading';
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <Navigator />
       <Loading />
       <Routes>

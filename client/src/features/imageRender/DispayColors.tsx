@@ -7,16 +7,16 @@ const toPercent = (number: number) => {
 };
 
 export const DisplayColors: React.FC = () => {
-  const image = useAppSelector(state => state.image);
+  const { image, imageColors} = useAppSelector(state => state.image);
   console.log(image);
 
   return (
-    (image.imageColors && image.image) &&
+    (image && imageColors) &&
         <div
           style={{ display: 'flex', justifyContent: 'center', margin: '20px 0', flexWrap: 'wrap' }}
         >
-          <img src={image.image} style={{height: '200px', width: 'auto'}}/>
-          {image.imageColors.map((color: imageColors, id: number) => {
+          <img src={image} style={{height: '200px', width: 'auto'}}/>
+          {imageColors.map((color: imageColors, id: number) => {
             return (
               <div key={id} >
                 <div>{toPercent(color.percentage)}</div>

@@ -83,8 +83,8 @@
 /* Image Upload component */
 .image-upload-form {
   margin: 20px 0;
-  height: 200px;
-  width: 400px;
+  height: 250px;
+  width: 450px;
   border: 3px dashed rgba(0,0,0,.075);
   border-radius: 10px;
   display: flex;

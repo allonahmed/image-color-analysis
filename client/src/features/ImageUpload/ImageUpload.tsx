@@ -1,18 +1,11 @@
-import React, { useRef, SetStateAction } from 'react';
+import React, { useRef } from 'react';
 import { IoIosImages } from 'react-icons/io';
 import { UploadImage } from '../../api/uploadImage';
 import { updateImageColors, updateImage } from '../../redux/reducers/image';
 import { updateLoading, updateModal } from '../../redux/reducers/system';
 import { useAppDispatch } from '../../hooks';
 
-
-type Props = {
-  image: File[] | null;
-  setImage: React.Dispatch<SetStateAction<File[] | null>>
-}
-export const ImageUpload: React.FunctionComponent<Props> = ({
-  setImage, image
-}) => {
+export const ImageUpload: React.FunctionComponent = () => {
   const inputFileRef = useRef<any>(null);
   const dispatch = useAppDispatch();
 

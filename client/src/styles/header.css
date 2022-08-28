@@ -1,0 +1,64 @@
+/* header component */
+.header {
+  height: 10vh;
+  max-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #222;
+}
+.header-title{
+  font-size: 22px;
+  color: #FD9346;
+}
+.navigation-logo {
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  left: 5%;
+  top: 2px;
+  transform: scaleX(1.4);
+}
+
+/* navigation component */
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  margin-bottom: 20px;
+  background-color: #222;
+  border-bottom: 1px solid rgba(0,0,0,.075)
+}
+.navigation-link{
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  padding: 28px 20px;
+  margin: 0 20px;
+  color: white;
+  font-size: 16px;
+  background: -webkit-linear-gradient(190deg,#FF6200, #FDB777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all .3s ease-in-out;
+}
+
+.active-navigation-link {
+  box-shadow: #FD9346 0 1px 0 0, inset #FD9346 0 -3px 0 0;
+  background: -webkit-linear-gradient(10deg,#FF6200, #FDB777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-icon-container{
+  position: absolute;
+  right: 20px;
+  display: flex;
+  align-items: center;
+}
+.nav-icons {
+  font-size: 24px;
+  margin: 0 5px;
+  color: #FD9346
+}
