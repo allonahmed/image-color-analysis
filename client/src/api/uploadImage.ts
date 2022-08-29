@@ -4,6 +4,7 @@ import axios from 'axios';
 export const UploadImage = async (image: any, e?: React.FormEvent<HTMLFormElement>) => {
   e && e.preventDefault();
   if(image){
+    //for images from db... we convert to file before sending to server
     if(typeof image === 'string'){
       await fetch(image)
         .then(async response => {
@@ -14,11 +15,9 @@ export const UploadImage = async (image: any, e?: React.FormEvent<HTMLFormElemen
           console.log(image);
         });
     }
-    console.log('image in UploadImage():', image[0]);
     const formData = new FormData();
 
     formData.append('file', image[0]);
-    console.log(formData);
     return await axios.post('/upload-image',
       formData,
       {

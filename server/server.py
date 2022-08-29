@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename # secure files
 from flask_cors import CORS, cross_origin # prevent cors policy blocks
 import logging # useful for logging info
 
-#config for logging server information
+#config for logging server informations
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('HELLO WORLD')
 

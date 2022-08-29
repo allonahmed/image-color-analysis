@@ -10,7 +10,6 @@ const toPercent = (number: number) => {
 
 export const DisplayColors: React.FC = () => {
   const { image, imageColors, current} = useAppSelector(state => state.image);
-  console.log(imageColors);
 
   return (
     (image && imageColors) &&
