@@ -15,7 +15,7 @@ def get_colors(image_path):
     img = image.convert("RGBA")
     return img.getcolors(maxcolors=80000006)
 
-path = '../assets/flag.png'
+path = './assets/flag.png'
 
 #sort the list by pixel size 
 def sort_list(list):
@@ -29,14 +29,17 @@ def total_pixels(path):
 
 #returns accurate pallete of image (returns rgba of most popular pixel colors)
 def get_color_pallete(path, count = 200):
+    # convertImage(path);
+    # path = './assets/New.png'
     colors = sort_list(get_colors(path))
     pixels = total_pixels(path)
     pallete = []
     for i in range(0, count):
-        pallete.append({
-                "color": colors[i][1],
-                "percentage": round(colors[i][0] / pixels, 4)
-            })
+        if(colors[i][1] != (0,0,0,0)):
+            pallete.append({
+                    "color": colors[i][1],
+                    "percentage": round(colors[i][0] / pixels, 4)
+                })
     return pallete
 
 def convertImage(path):
@@ -54,9 +57,9 @@ def convertImage(path):
             newData.append(item)
  
     img.putdata(newData)
-    img.save("./New.png", "PNG")
+    img.save("./assets/New.png", "PNG")
     print("Successful")
 
-# convertImage()
+
 
 # def get_color_percentage(path, count):
