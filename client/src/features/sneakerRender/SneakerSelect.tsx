@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { FiCheck, FiX as DeleteQuery, FiSearch as SearchIcon} from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-
-import '../../styles/sneakerselect.css';
 import { updateCurrent, updateImage, updateImageColors } from '../../redux/reducers/image';
 import { updateLoading } from '../../redux/reducers/system';
 import { UploadImage } from '../../api/uploadImage';
-  
+import axios from 'axios';
+
+import '../../styles/sneakerselect.css';
+ 
 export const SneakerSelect: React.FunctionComponent = () => {
   const [options, setOptions] = useState<any>(null);
   const [openOptions, setOpen] = useState<boolean>(false);
@@ -39,6 +39,9 @@ export const SneakerSelect: React.FunctionComponent = () => {
           placeholder='Search through 6600+ jordans...'
           onClick={()=>{
             dispatch(updateCurrent( null));
+            if(query.includes('.')){
+              setQuery(query.replaceAll('.', ''));
+            }
           }}
           style={selection && {padding: '20px 0px 20px 120px'}}
         />

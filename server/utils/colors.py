@@ -57,6 +57,6 @@ def convertImage(path):
     img.save("./New.png", "PNG")
     print("Successful")
 
-convertImage()
+# convertImage()
 
 # def get_color_percentage(path, count):
