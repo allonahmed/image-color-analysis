@@ -3,7 +3,6 @@ from PIL import Image
 import numpy as np
 
 
-
 def remove_background():
     im = Image.open('../assets/shattered.png')
     im = im.convert('RGBA')
@@ -61,7 +60,7 @@ def get_color_pallete(path, count = 200):
         if(colors[i][1] != (0,0,0,0)):
             pallete.append({
                     "color": colors[i][1],
-                    "percentage": round(colors[i][0] / pixels, 4)
+                    "percentage": round(colors[i][0] / pixels, 8)
                 })
     return pallete
 
@@ -82,5 +81,5 @@ def make_brians_teeth_yellow(path):
     img.save("../assets/New.png", "PNG")
     print("Successful")
 
-convertImage('../assets/brian.png')
+# make_brians_teeth_yellow('../assets/brian.png')
 
