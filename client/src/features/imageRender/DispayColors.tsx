@@ -5,11 +5,13 @@ import { imageColors } from '../../redux/reducers/image';
 import '../../styles/Imagedisplay.css';
 
 const toPercent = (number: number) => {
-  return `${Math.floor(number * 100)}%`;
+  return `${(number.toFixed(2))}%`;
 };
 
 export const DisplayColors: React.FC = () => {
   const { image, imageColors, current} = useAppSelector(state => state.image);
+  
+  console.log(imageColors);
 
   return (
     (image && imageColors) &&
@@ -20,11 +22,12 @@ export const DisplayColors: React.FC = () => {
             {imageColors.map((color: imageColors, id: number) => {
               return (
                 <div key={id} >
-                  <div>{toPercent(color.percentage)}</div>
+                  <div>0{toPercent(color.percentage * 100)}</div>
+                  <div style={{fontSize:'8px'}}>rgb({color.color[0]},{color.color[1]}, {color.color[2]})</div>
                   <div
                     style={{
-                      height: '60px',
-                      width: '60px',
+                      height: '75px',
+                      width: '75px',
                       backgroundColor: `rgb(${color.color[0]}, ${color.color[1]}, ${color.color[2]}`,
                       marginRight: '20px'
                     }}
