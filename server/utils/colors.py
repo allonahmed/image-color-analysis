@@ -23,6 +23,7 @@ def remove_background():
     new_im.save('../assets/redbg.png', "PNG")
 
 
+
 #using color theif module to generate rgb of most used color in img returns array
 def ct_dominant_color(image_path):
     return ColorThief(image_path).get_color(quality=1)
@@ -32,9 +33,9 @@ def ct_pallete_colors(image_path):
     return ColorThief(image_path).get_palette(color_count=6)    
 
 #using Pillow library to generate colors in image
-def get_colors(image_path):
+def get_colors(image_path, type = "RGBA"):
     image = Image.open(image_path);
-    img = image.convert("RGBA")
+    img = image.convert(type)
     return img.getcolors(maxcolors=80000006)
 
 path = './assets/flag.png'
@@ -42,6 +43,10 @@ path = './assets/flag.png'
 #sort the list by pixel size 
 def sort_list(list):
     list.sort(key = lambda x: x[0], reverse=True)
+    return list
+
+def sort_list2(list):
+    list.sort(key = lambda x: x[1])
     return list
 
 #get pixel count of image
@@ -83,3 +88,43 @@ def make_brians_teeth_yellow(path):
 
 # make_brians_teeth_yellow('../assets/brian.png')
 
+#iterate through each pixel in image and add it to a new array of objects. if the
+# def test_color_sorting():
+#     return NULL;
+
+#convert image to L type then sort by L value (not count) *already sorted*
+#create new object that contains colors that 
+def clean_colors(path):
+    colorCount = 0; #keeps track of the color count for the color make_brians_teeth_yello
+    colorL = 0;
+    count = 0 #keeps track of amount of colors in mash
+    startColor = 0 #gets the starting count to compare with
+    newData = []
+    colors = get_colors(path, "RGBA")
+    print('colors:',colors)
+    # for i in range(0, len(colors)):
+    #     # print(colors[i])
+    #     if count == 0:
+    #         startColor = colors[i][1] 
+    #         colorL = colors[i][1]
+    #         colorCount = colors[i][0]
+    #         count += 1 
+    #         # print("count 0")
+    #     elif colors[i][1] - startColor <= 30:
+    #         # print("colors[i][1] - startColor <= 30")
+    #         colorCount+= colors[i][0]
+    #         colorL += colors[i][1]
+    #         count += 1
+    #     else:
+    #         newData.append((colorCount, colorL / count))
+    #         count = 0
+
+    img = Image.open(path)
+    img = img.convert("P")
+    img.putdata(newData, 1, 0)
+    img.save("../assets/newData1.png", "PNG")
+    newColors = get_colors('../assets/newData1.png', "RGBA")
+    print('newColors:', newColors)
+    # return newData
+
+print(clean_colors('../assets/redbg.png'))
