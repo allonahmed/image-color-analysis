@@ -19,16 +19,17 @@ export const DisplayColors: React.FC = () => {
           className='display-container'
         >
           <div className='color-display-container'>
-            {imageColors.map((color: imageColors, id: number) => {
+            {imageColors.map((color: any, id: number) => {
               return (
                 <div key={id} >
-                  <div>0{toPercent(color.percentage * 100)}</div>
-                  <div style={{fontSize:'8px'}}>rgb({color.color[0]},{color.color[1]}, {color.color[2]})</div>
+                  {/* <div>0{toPercent(color.percentage * 100)}</div> */}
+                  {/* <div style={{fontSize:'8px'}}>rgb({color.color[0]},{color.color[1]}, {color.color[2]})</div> */}
                   <div
                     style={{
                       height: '75px',
                       width: '75px',
-                      backgroundColor: `rgb(${color.color[0]}, ${color.color[1]}, ${color.color[2]}`,
+                      // backgroundColor: `rgb(${color.color[0]}, ${color.color[1]}, ${color.color[2]}`,
+                      backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
                       marginRight: '20px'
                     }}
                   />

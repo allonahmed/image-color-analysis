@@ -127,4 +127,4 @@ def clean_colors(path):
     print('newColors:', newColors)
     # return newData
 
-print(clean_colors('../assets/redbg.png'))
+# print(clean_colors('../assets/redbg.png'))
