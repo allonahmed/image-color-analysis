@@ -22,15 +22,13 @@ def remove_background():
     new_im = Image.fromarray(data)
     new_im.save('../assets/redbg.png', "PNG")
 
-
-
 #using color theif module to generate rgb of most used color in img returns array
 def ct_dominant_color(image_path):
-    return ColorThief(image_path).get_color(quality=1)
+    return ColorThief(image_path).get_color(quality=3)
 
 #using color theif module to generate rgb of most prominate colors in img returns 2d array
 def ct_pallete_colors(image_path):
-    return ColorThief(image_path).get_palette(color_count=6)    
+    return ColorThief(image_path).get_palette(color_count=2)    
 
 #using Pillow library to generate colors in image
 def get_colors(image_path, type = "RGBA"):
@@ -128,3 +126,6 @@ def clean_colors(path):
     # return newData
 
 # print(clean_colors('../assets/redbg.png'))
+
+
+
