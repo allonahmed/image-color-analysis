@@ -23,6 +23,7 @@ export const DisplayColors: React.FC = () => {
               return (
                 <div key={id} >
                   {/* <div>0{toPercent(color.percentage * 100)}</div> */}
+                  <div>{`rgb(${color[0]}, ${color[1]}, ${color[2]})`}</div>
                   {/* <div style={{fontSize:'8px'}}>rgb({color.color[0]},{color.color[1]}, {color.color[2]})</div> */}
                   <div
                     style={{
