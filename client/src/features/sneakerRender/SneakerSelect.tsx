@@ -12,6 +12,7 @@ export const SneakerSelect: React.FunctionComponent = () => {
   const [options, setOptions] = useState<any>(null);
   const [openOptions, setOpen] = useState<boolean>(false);
   const [query, setQuery] = useState<string>('');
+  const [focused, setFocused] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const selection = useAppSelector(state=>state.image.current);
 
@@ -24,7 +25,7 @@ export const SneakerSelect: React.FunctionComponent = () => {
 
   return (  
     <div className='sneaker-selection-container' >
-      <div className='sneaker-selection-input-container'>
+      <button className='sneaker-selection-input-container'>
         <SearchIcon className='input-search-icon' color={'black'}/>
         {selection  && <img src={selection.thumbnail_image} className='input-image'/>}
         <input 
@@ -33,7 +34,10 @@ export const SneakerSelect: React.FunctionComponent = () => {
           onChange={(e)=> {
             setQuery(e.target.value);
           }} 
-          // onBlur={()=> setOpen(false)}
+          onBlur={()=> { 
+            if(focused === false)
+              setOpen(false);
+          }}
           onFocus={()=> setOpen(true)}
           className='sneaker-selection-input'
           placeholder='Search through 6600+ jordans...'
@@ -55,7 +59,7 @@ export const SneakerSelect: React.FunctionComponent = () => {
             setOpen(false);
           }}
         />
-      </div>
+      </button>
       {openOptions &&
       <div className='options-container'>
         
@@ -79,6 +83,8 @@ export const SneakerSelect: React.FunctionComponent = () => {
                   dispatch(updateLoading(false));
                 });
               }}
+              onMouseEnter={()=>setFocused(true)}
+              onMouseLeave={()=>setFocused(false)}
             >
               <img src={item.thumbnail_image} style={{height: '100px', width: '100px', marginRight:'5px'}} className='thumbnail-image'/>
               <div style={{display: 'flex', flexDirection:'column',alignItems:'flex-start'}}>
