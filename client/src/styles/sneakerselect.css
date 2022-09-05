@@ -7,10 +7,9 @@
   width: 400px;
   position: relative;
   background-clip: padding-box; /* !importanté */
-  border: solid 2px transparent; /* !importanté */
+  border: solid 3px transparent; /* !importanté */
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 1px .5px 0 0px;
 }
 .sneaker-selection-input{
   font-size: 16px;
@@ -33,7 +32,7 @@
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   z-index: -1;
-  margin: -2px; /* !importanté */
+  margin: -3px; /* !importanté */
   border-radius: inherit; /* !importanté */
   background: linear-gradient(to left, #FDB777, #FDB777, #FDB777, #FD7F2C, #FF6200);
 }

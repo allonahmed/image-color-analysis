@@ -1,7 +1,7 @@
 /* header component */
 .header {
   height: 10vh;
-  max-height: 50px;
+  max-height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,11 +12,11 @@
   color: #FD9346;
 }
 .navigation-logo {
-  height: 70px;
-  width: 70px;
+  height: 80px;
+  width: 80px;
   position: absolute;
   left: 5%;
-  top: 2px;
+  top: 10px;
   transform: scaleX(1.4);
 }
 
@@ -25,16 +25,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 75px;
+  height: 100px;
   margin-bottom: 20px;
   background-color: #222;
-  border-bottom: 1px solid rgba(0,0,0,.075)
+  box-shadow: 0 0 20px #222;
 }
 .navigation-link{
   display: flex;
   justify-content: center;
   text-decoration: none;
-  padding: 28px 20px;
+  padding: 41px 20px;
   margin: 0 20px;
   color: white;
   font-size: 16px;
