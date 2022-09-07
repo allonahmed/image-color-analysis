@@ -8,8 +8,8 @@ export const Canvas : React.FunctionComponent = () => {
     if (image){
       const img : any = new Image();
       img.src = image;
-      img.height = 500;
-      img.width = 500;
+      img.height = 400;
+      img.width = 400;
       const canvasElement : any  = document.getElementById('canvas');
       const ctx = canvasElement.getContext('2d');
       const canvas = ctx.canvas;
@@ -22,7 +22,6 @@ export const Canvas : React.FunctionComponent = () => {
   return (
     <canvas 
       id='canvas'
-      style={{border: '1px solid black'}} 
     />
   );
 };
