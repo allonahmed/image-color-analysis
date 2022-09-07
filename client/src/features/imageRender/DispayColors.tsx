@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../hooks';
 import { imageColors } from '../../redux/reducers/image';
+import { Canvas } from '../../components/Canvas';
 
 import '../../styles/Imagedisplay.css';
 
@@ -18,6 +19,21 @@ export const DisplayColors: React.FC = () => {
         <div
           className='display-container'
         >
+          <div className='image-data'>
+            <Canvas />
+            {
+              current && 
+                <div style={{marginTop:'-50px'}}>
+                  <h3 >{current.brand}</h3>
+                  <h1 >{current.name}</h1>
+                  <h2 >{current.silhouette}</h2>
+                  <p>Release Date: {current.release_date}</p>
+                  <p>Market Value Price: ${current.estimated_market_value}</p>
+                  
+                </div>
+              
+            }
+          </div>
           <div className='color-display-container'>
             {imageColors.map((color: any, id: number) => {
               return (
@@ -37,21 +53,6 @@ export const DisplayColors: React.FC = () => {
                 </div>
               );
             })}
-          </div>
-          <div className='image-data'>
-            <img src={image} />
-            {
-              current && 
-                <div style={{marginTop:'-50px'}}>
-                  <h3 >{current.brand}</h3>
-                  <h1 >{current.name}</h1>
-                  <h2 >{current.silhouette}</h2>
-                  <p>Release Date: {current.release_date}</p>
-                  <p>Market Value Price: ${current.estimated_market_value}</p>
-                  
-                </div>
-              
-            }
           </div>
         </div>
   );

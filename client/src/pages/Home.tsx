@@ -10,12 +10,11 @@ function Home() {
   return (
     <div className='home-container'>
       <div style={{display:'flex', justifyContent:'center', height: '100px'}}>
-        <Upload />
-        <p style={{padding: '20px 20px', fontSize: '20px'}}>or</p>
         <SneakerSelect />
+        <p style={{padding: '20px 20px', fontSize: '20px'}}>or</p>
+        <Upload />
       </div>
       <DisplayColors />
-      <EyeDropper />
     </div>
   );
 }
