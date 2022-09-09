@@ -76,11 +76,11 @@ export const SneakerSelect: React.FunctionComponent = () => {
                 } else setQuery(item.name);
                 setOpen(false);
                 dispatch(updateCurrent(item));
-                dispatch(updateImage(item.thumbnail_image));
                 dispatch(updateLoading(true));
                 UploadImage(item.thumbnail_image).then((res) => {
                   dispatch(updateImageColors(res));
                   dispatch(updateLoading(false));
+                  dispatch(updateImage(item.thumbnail_image));
                 });
               }}
               onMouseEnter={()=>setFocused(true)}

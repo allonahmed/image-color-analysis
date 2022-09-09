@@ -34,7 +34,7 @@ export const DisplayColors: React.FC = () => {
             }
           </div>
           <div className='image-and-colors'>
-            <Canvas />
+            <Canvas image={image}/>
             <div className='palette'>
               {imageColors.map((color: any, id: number) => {
                 return (
