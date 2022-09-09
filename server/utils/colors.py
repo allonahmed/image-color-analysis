@@ -1,7 +1,7 @@
 from colorthief import ColorThief
 from PIL import Image
 import numpy as np
-
+from webptools import dwebp, grant_permission
 
 def remove_background():
     im = Image.open('../assets/shattered.png')
@@ -28,7 +28,14 @@ def ct_dominant_color(image_path):
 
 #using color theif module to generate rgb of most prominate colors in img returns 2d array
 def ct_pallete_colors(image_path):
-    return ColorThief(image_path).get_palette(color_count=2)    
+    print('he;lo')
+    im = Image.open(image_path).convert('RGBA')
+    print(im)
+    convert = './assets/test.png'
+    im.save(convert, 'png')
+    converted = dwebp(convert,"test.jpg","-o")
+    
+    return ColorThief(converted).get_palette(color_count=2)    
 
 #using Pillow library to generate colors in image
 def get_colors(image_path, type = "RGBA"):

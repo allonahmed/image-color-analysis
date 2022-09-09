@@ -61,7 +61,6 @@
 .sneaker-selection-input:focus{
   border: none;
   outline: none;
-  /* box-shadow: inset #FF6200 0 0 0 3px; */
 }
 .sneaker-selection-input::placeholder {
   color:#a5a5a5;

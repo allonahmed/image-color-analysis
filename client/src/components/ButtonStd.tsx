@@ -10,8 +10,8 @@ type Props = {
 
 const StyledButton = styled.button`
     border-radius: 8px;
-    color: ${cl.Scarlet};
-    background-color: ${cl.Cream};
+    color: ${cl.orange[1]};
+    background-color: ${cl.background};
     padding: 5px 10px;
 `;
 

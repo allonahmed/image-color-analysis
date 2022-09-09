@@ -2,7 +2,6 @@ import React from 'react';
 import { DisplayColors } from '../features/imageRender/DispayColors';
 import { Upload } from '../features/ImageUpload/Upload';
 import { SneakerSelect } from '../features/sneakerRender/SneakerSelect';
-import { EyeDropper } from '../components/EyeDropper';
 
 import '../styles/home.css';
 

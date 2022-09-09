@@ -1,8 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../hooks';
-import { imageColors } from '../../redux/reducers/image';
 import { Canvas } from '../../components/Canvas';
-
+import { rgbToHex } from '../../helpers';
 import '../../styles/Imagedisplay.css';
 
 const toPercent = (number: number) => {
@@ -11,8 +10,6 @@ const toPercent = (number: number) => {
 
 export const DisplayColors: React.FC = () => {
   const { image, imageColors, current} = useAppSelector(state => state.image);
-  
-  console.log(imageColors);
 
   return (
     (image && imageColors) &&
@@ -20,39 +17,40 @@ export const DisplayColors: React.FC = () => {
           className='display-container'
         >
           <div className='image-data'>
-            <Canvas />
             {
               current && 
-                <div style={{marginTop:'-50px'}}>
+                <div>
                   <h3 >{current.brand}</h3>
                   <h1 >{current.name}</h1>
                   <h2 >{current.silhouette}</h2>
                   <p>Release Date: {current.release_date}</p>
-                  <p>Market Value Price: ${current.estimated_market_value}</p>
-                  
+                  <p>Market Value Price: ${current.estimated_market_value}</p>      
                 </div>
-              
             }
           </div>
-          <div className='color-display-container'>
-            {imageColors.map((color: any, id: number) => {
-              return (
-                <div key={id} >
-                  {/* <div>0{toPercent(color.percentage * 100)}</div> */}
-                  <div>{`rgb(${color[0]}, ${color[1]}, ${color[2]})`}</div>
-                  {/* <div style={{fontSize:'8px'}}>rgb({color.color[0]},{color.color[1]}, {color.color[2]})</div> */}
-                  <div
-                    style={{
-                      height: '75px',
-                      width: '75px',
-                      // backgroundColor: `rgb(${color.color[0]}, ${color.color[1]}, ${color.color[2]}`,
-                      backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
-                      marginRight: '20px'
-                    }}
-                  />
-                </div>
-              );
-            })}
+          <div className='image-and-colors'>
+            <Canvas image={image}/>
+            <div className='palette'>
+              {imageColors.map((color: any, id: number) => {
+                return (
+                  <div key={id} className='palette-item'>
+                    {/* <div style={{fontSize:'8px'}}>rgb({color.color[0]},{color.color[1]}, {color.color[2]})</div> */}
+                    <div
+                      className='palette-color'
+                      style={{
+                        // backgroundColor: `rgb(${color.color[0]}, ${color.color[1]}, ${color.color[2]}`,
+                        backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
+                        boxShadow: `0 0 5px 1px rgb(${color[0]}, ${color[1]}, ${color[2]})`
+                      }}
+                    >
+                      <div className='palette-hex'>
+                        {rgbToHex(color[0], color[1], color[2])}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
   );

@@ -5,7 +5,6 @@ import { SelectOptions } from './SelectOptions';
 import '../../styles/imageupload.css';
 
 /**
- * 
  * @returns modal for image selecting 
  */
 
