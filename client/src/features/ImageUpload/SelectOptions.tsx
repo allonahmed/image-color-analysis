@@ -8,7 +8,7 @@ type Props = {
 }
 
 export const SelectOptions : React.FunctionComponent<Props> = ({
-  type, image, setImage
+  type
 }) => {
   switch(type) {
     case 'Upload':

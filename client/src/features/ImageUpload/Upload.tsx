@@ -3,12 +3,11 @@ import Modal from 'react-modal';
 import { ImageSelect } from './ImageSelect';
 import { IoImagesOutline } from 'react-icons/io5';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-
-import '../../styles/imageupload.css';
 import { updateModal } from '../../redux/reducers/system';
 
+import '../../styles/imageupload.css';
+
 /**
- * 
  * @returns button that opens image upload modal
  */
 
@@ -44,7 +43,6 @@ export const Upload : React.FunctionComponent = () => {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={styles}
-        // appElement={document.getElementById('root') as HTMLElement}
       >
         <ImageSelect closeModal={closeModal}/>
       </Modal>
