@@ -9,18 +9,11 @@ export const Loading: React.FC = () => {
   return (
     <div className="loading-container" style={{ display: status ? 'flex' : 'none' }}>
       <div className="lds-spinner">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        {Array.from({ length: 12 }, (_, id) => {
+          return (
+            <div key={id}></div>
+          );
+        })}
       </div>
     </div>
   );
