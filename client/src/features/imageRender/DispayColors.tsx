@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAppSelector } from '../../hooks';
-import { imageColors } from '../../redux/reducers/image';
 import { Canvas } from '../../components/Canvas';
 import { rgbToHex } from '../../helpers';
 import '../../styles/Imagedisplay.css';
@@ -9,12 +8,8 @@ const toPercent = (number: number) => {
   return `${(number.toFixed(2))}%`;
 };
 
-
-
 export const DisplayColors: React.FC = () => {
   const { image, imageColors, current} = useAppSelector(state => state.image);
-  
-  console.log(imageColors);
 
   return (
     (image && imageColors) &&

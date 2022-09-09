@@ -1,3 +1,5 @@
 import { useAppDispatch, useAppSelector } from './ReduxHooks';
 import { useCurrentPath } from './useCurrentPath';
-export {useAppDispatch, useAppSelector, useCurrentPath};
+import { useForceUpdate } from './useForceUpdate';
+
+export { useAppDispatch, useAppSelector, useCurrentPath, useForceUpdate };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { FiCheck, FiX as DeleteQuery, FiSearch as SearchIcon} from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { updateCurrent, updateImage, updateImageColors } from '../../redux/reducers/image';
@@ -18,10 +18,25 @@ export const SneakerSelect: React.FunctionComponent = () => {
 
   useEffect(()=>{
     axios.post('http://localhost:2020/get-sneakers', {query}).then((res)=>{
-      // console.log(res.data);
       setOptions(res.data);
     });
   },[query]);
+
+  //sending image to flask server for image processing 
+  const HandleSubmit = (e: SyntheticEvent, item : any) => { 
+    e.preventDefault();
+    if(item.name.length > 25){
+      setQuery(item.name.substring(0,24) + '...');
+    } else setQuery(item.name);
+    setOpen(false);
+    dispatch(updateCurrent(item));
+    dispatch(updateLoading(true));
+    UploadImage(item.thumbnail_image).then((res) => {
+      dispatch(updateImageColors(res));
+      dispatch(updateLoading(false));
+      dispatch(updateImage(item.thumbnail_image));
+    });
+  };
 
   return (  
     <div className='sneaker-selection-container' >
@@ -63,26 +78,13 @@ export const SneakerSelect: React.FunctionComponent = () => {
       {openOptions &&
       <div className='options-container'>
         
-        {options && options.map((item:any, id: number)=> {
+        {options && options.map((item: any, id: number)=> {
           return (
             <div 
               key={id}
               className='options-item'
               style={{ display: 'flex', alignItems:'center'}}
-              onClick={(e)=> { 
-                e.preventDefault();
-                if(item.name.length > 25){
-                  setQuery(item.name.substring(0,24) + '...');
-                } else setQuery(item.name);
-                setOpen(false);
-                dispatch(updateCurrent(item));
-                dispatch(updateLoading(true));
-                UploadImage(item.thumbnail_image).then((res) => {
-                  dispatch(updateImageColors(res));
-                  dispatch(updateLoading(false));
-                  dispatch(updateImage(item.thumbnail_image));
-                });
-              }}
+              onClick={(e) => HandleSubmit(e, item)}
               onMouseEnter={()=>setFocused(true)}
               onMouseLeave={()=>setFocused(false)}
             >
@@ -96,7 +98,8 @@ export const SneakerSelect: React.FunctionComponent = () => {
             </div>
           );
         })}
-      </div>}
+      </div>
+      }
     </div>
   );
 };

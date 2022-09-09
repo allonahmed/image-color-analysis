@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-//create your forceUpdate hook
-function useForceUpdate(){
-  const [value, setValue] = useState(0); // integer state
-  return () => setValue(value => value + 1); // update state to force render
-  // An function that increment 👆🏻 the previous state like here 
-  // is better than directly setting `value + 1`
+/**
+ * @returns a canvas element generated from image uploaded
+ */
+
+type Props = {
+  image: string
 }
-export const Canvas : React.FunctionComponent<{image: string}> = ({image}) => {
-  // const image = useAppSelector((state) => state.image.image);
-  const forceUpdate = useForceUpdate();
+
+export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
   
   useEffect(()=> {
-    console.log('checking');
     if (image){
-      console.log('checking');
+      //creating elemeent with uploaded image url
       const img : any = new Image();
       img.src = image;
-      // const img : any = document.getElementById(`${image}-image`);
       img.height = 400;
       img.width = 400;
+
+      //creating canvas from image
       const canvasElement : any  = document.getElementById('canvas');
       const ctx = canvasElement.getContext('2d');
       const canvas = ctx.canvas;
@@ -28,7 +27,6 @@ export const Canvas : React.FunctionComponent<{image: string}> = ({image}) => {
       canvas.height = img.height;
       canvas.width = img.width;
       ctx.drawImage(img, 0,0, img.width, img.height);
-      forceUpdate();
     }
   },[image]);
 
