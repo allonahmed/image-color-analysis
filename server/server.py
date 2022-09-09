@@ -43,6 +43,7 @@ def fileUpload():
         logger.info(filename)
         destination="/".join([target, filename])
         file.save(destination)
+        logger.info(file)
         # session['uploadFilePath']=destination
         response = ct_pallete_colors('./assets/'+ filename)
         return jsonify(response)

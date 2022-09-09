@@ -1,22 +1,20 @@
 import axios from 'axios';
 
 
-export const UploadImage = async (image: any, e?: React.FormEvent<HTMLFormElement>) => {
+export const UploadImage = async (image: string | File[], e?: React.FormEvent<HTMLFormElement>) => {
   e && e.preventDefault();
   if(image){
     //for images from db... we convert to file before sending to server
     if(typeof image === 'string'){
       await fetch(image)
         .then(async response => {
-          const contentType: any = response.headers.get('content-type');
           const blob = await response.blob();
-          console.log(blob);
-          image  =[new File([blob], 'fileName.jpg')];
+          image  =[new File([blob], `fileName.${blob.type.substring(6,blob.type.length)}`)];
           console.log(image);
         });
     }
     const formData = new FormData();
-
+    
     formData.append('file', image[0]);
     return await axios.post('/upload-image',
       formData,
@@ -28,5 +26,5 @@ export const UploadImage = async (image: any, e?: React.FormEvent<HTMLFormElemen
     ).then((response) => response).then(message => message.data).catch((err) => {
       console.log('error: ', err);
     });
-  }else console.log('no image selected');
+  } else console.log('no image selected');
 };

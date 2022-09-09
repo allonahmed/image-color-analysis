@@ -25,7 +25,6 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
       const canvasElement : any  = document.getElementById('canvas');
       const ctx = canvasElement.getContext('2d');
       const canvas = ctx.canvas;
-      console.log(canvas);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       canvas.height = img.height;
       canvas.width = img.width;
