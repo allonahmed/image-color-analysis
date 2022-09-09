@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 
 /**
+ * @todos :
+ * 1. add circle withen canvas to show location of palette colors
+ * 2. be able to add eyedropper to read colors from all points in canvas
  * @returns a canvas element generated from image uploaded
  */
 
