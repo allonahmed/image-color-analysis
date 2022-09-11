@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { FiCheck, FiX as DeleteQuery, FiSearch as SearchIcon} from 'react-icons/fi';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { updateCurrent, updateImage, updateImageColors } from '../../redux/reducers/image';
+import { updateCurrent, updateImage, updateImageColors, updateImageType } from '../../redux/reducers/image';
 import { updateLoading } from '../../redux/reducers/system';
 import { UploadImage } from '../../api/uploadImage';
 import axios from 'axios';
@@ -29,12 +29,13 @@ export const SneakerSelect: React.FunctionComponent = () => {
       setQuery(item.name.substring(0,24) + '...');
     } else setQuery(item.name);
     setOpen(false);
-    dispatch(updateCurrent(item));
+    dispatch(updateCurrent(item)); 
     dispatch(updateLoading(true));
     UploadImage(item.thumbnail_image).then((res) => {
       dispatch(updateImageColors(res));
       dispatch(updateLoading(false));
       dispatch(updateImage(item.thumbnail_image));
+      dispatch(updateImageType(item.thumbnail_image));
     });
   };
 
@@ -75,7 +76,8 @@ export const SneakerSelect: React.FunctionComponent = () => {
           }}
         />
       </button>
-      {openOptions &&
+      { 
+        openOptions &&
       <div className='options-container'>
         
         {options && options.map((item: any, id: number)=> {
