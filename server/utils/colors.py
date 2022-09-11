@@ -4,24 +4,23 @@ import numpy as np
 from webptools import dwebp, grant_permission # for converting webp to pil supported type
 import imghdr # for getting image type
 
-def remove_background():
-    im = Image.open('../assets/shattered.png')
-    im = im.convert('RGBA')
-    data = np.array(im)
-    # just use the rgb values for comparison
-    rgb = data[:,:,:3]
-    color = [0,0,0]   # Original value
-    black = [0,0,0, 255]
-    white = [255,255,0,255]
-    print(rgb);
-    mask = np.all(rgb == color, axis = -1)
-    # change all pixels that match color to white
-    data[mask] = white
+#removes white background and makes image transparent
+def transparentBackground(path):
+    img = Image.open(path)
+    img = img.convert("RGBA")
+ 
+    datas = img.getdata() 
+    newData = []
 
-    # change all pixels that don't match color to black
-    ##data[np.logical_not(mask)] = black
-    new_im = Image.fromarray(data)
-    new_im.save('../assets/redbg.png', "PNG")
+    for item in datas:
+        if item[0] > 250 and item[1] > 250 and item[2] > 250:
+            newData.append((255, 255,255, 0))
+        else:
+            newData.append(item)
+ 
+    img.putdata(newData)
+    img.save('./assets/altered.png', "PNG")
+    print("Successful")
 
 #using color theif module to generate rgb of most used color in img returns array
 def ct_dominant_color(image_path):
@@ -29,9 +28,9 @@ def ct_dominant_color(image_path):
 
 #converts webp to png 
 def convert(image_path):
-    convert = './assets/converted.png'
-    dwebp(image_path, convert, "-o")
-    return convert
+    dwebp(image_path, './assets/converted.png', "-o")
+    transparentBackground('./assets/converted.png')
+    return './assets/altered.png'
 
 #using color theif module to generate rgb of most prominate colors in img returns 2d array
 def ct_pallete_colors(image_path):
@@ -76,22 +75,7 @@ def get_color_pallete(path, count = 200):
                 })
     return pallete
 
-def make_brians_teeth_yellow(path):
-    img = Image.open(path)
-    img = img.convert("RGBA")
- 
-    datas = img.getdata() 
-    newData = []
 
-    for item in datas:
-        if item[0] > 180 and item[1] > 180 and item[2] > 180:
-            newData.append((255, 255,0, 255))
-        else:
-            newData.append(item)
- 
-    img.putdata(newData)
-    img.save("../assets/New.png", "PNG")
-    print("Successful")
 
 # make_brians_teeth_yellow('../assets/brian.png')
 
