@@ -25,20 +25,20 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         pixel[p+r] >= 240 &&
           pixel[p+g] >= 240 && 
           pixel[p+b] >= 240) // if white then change alpha to 0
-      {pixel[p+a] = 0;}
-    }
+      {pixel[p+a] = 0;}  
+    } 
 
     context.putImageData(imageData,0,0);
   };
 
-  const CreateCanvas   =  ()=>{
+  useEffect(()=> {
     if (image){
       //creating elemeent with uploaded image url
       const img : any = new Image();
       img.src = image;
-      img.height = 400;
+      img.height = 400; 
       img.width = 400;
-      img.crossOrigin = 'Anonymous';
+      // img.crossOrigin = 'Anonymous';
 
       //creating canvas from image
       const canvasElement : any  = document.getElementById('canvas');
@@ -48,15 +48,11 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
       canvas.height = img.height;
       canvas.width = img.width;
       ctx.drawImage(img, 0,0, img.width, img.height);
-      removeBackground(ctx, canvas.height, canvas.width);
+      // removeBackground(ctx, canvas.height, canvas.width);
     }
-  };
-
-  useEffect(()=> {
-    CreateCanvas();
   },[image]);
 
   return (
-    <canvas id={'canvas'} />
+    <canvas id='canvas' />
   );
 };
