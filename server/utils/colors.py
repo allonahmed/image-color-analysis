@@ -34,8 +34,8 @@ def convert(image_path):
 
 #using color theif module to generate rgb of most prominate colors in img returns 2d array
 def ct_pallete_colors(image_path):
-    # if(imghdr.what(image_path) == 'webp'):
-    #     image_path = convert(image_path)
+    if(imghdr.what(image_path) == 'webp'):
+        image_path = convert(image_path)
     return ColorThief(image_path).get_palette(color_count=2)    
 
 #using Pillow library to generate colors in image
