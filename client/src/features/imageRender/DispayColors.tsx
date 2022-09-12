@@ -4,6 +4,7 @@ import { Canvas } from '../../components/Canvas';
 import { rgbToHex } from '../../helpers';
 
 import '../../styles/Imagedisplay.css';
+import { Relateable } from './RelateableSlider';
 
 const toPercent = (number: number) => {
   return `${(number.toFixed(2))}%`;
@@ -22,6 +23,9 @@ export const DisplayColors: React.FC = () => {
             <div className='product-header'> 
               <h2 >{imageData.silhouette}</h2>
               <h3 >{imageData.name} ({imageData.release_year})</h3>
+            </div>
+            <div style={{width:'100%'}}>
+              <Relateable />
             </div>
             <div className='product-info'>
               <h4>Product Information</h4>

@@ -7,6 +7,7 @@ import { UploadImage } from '../../api/uploadImage';
 import axios from 'axios';
 
 import '../../styles/sneakerselect.css';
+import { getRelated } from '../../api/testapi';
  
 export const SneakerSelect: React.FunctionComponent = () => {
   const [ options, setOptions ] = useState<any>(null);
@@ -23,15 +24,16 @@ export const SneakerSelect: React.FunctionComponent = () => {
   },[query]);
 
   //sending image to flask server for image processing 
-  const HandleSubmit = (e: SyntheticEvent, item : any) => { 
+  const HandleSubmit = async (e: SyntheticEvent, item : any) => { 
     e.preventDefault();
     if(item.name.length > 25){
-      setQuery(item.name.substring(0,24) + '...');
+      setQuery(item.name.substring(0,40) + '...');
     } else setQuery(item.name);
     setOpen(false);
     setCurrent(item);
     dispatch(updateImageData(item)); 
     dispatch(updateLoading(true));
+    await getRelated(item.silhouette).then((resp)=> console.log(resp));
     UploadImage(item.thumbnail_image).then((res) => {
       dispatch(updateImageColors(res));
       dispatch(updateLoading(false));
