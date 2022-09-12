@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { ImageData } from '../../types';
 
 export type imageColors = {
   color: Array<number>;
@@ -6,17 +7,17 @@ export type imageColors = {
 };
 
 export type imageState = {
-  image: any;
+  imageUrl: any;
   imageType: string | null | any
   imageColors: Array<imageColors> | null;
-  current: any
+  imageData: ImageData
 };
 
 const initialState: imageState = {
-  image: null,
+  imageUrl: null,
   imageType: null,
   imageColors: null,
-  current: null
+  imageData: null
 };
 
 export const fetchImageType = createAsyncThunk('image/fetchImage', 
@@ -38,13 +39,13 @@ const imageSlice = createSlice({
       if(url.includes('images.stockx')){
         url = url.replace('bg=FFFFFF', 'bg=222222');
       }
-      state.image = url;
+      state.imageUrl = url;
     },
     updateImageColors: (state, action: PayloadAction<imageColors[]>) => {
       state.imageColors = action.payload;
     },
     updateImageData: (state, action: PayloadAction<any>) => {
-      state.current = action.payload;
+      state.imageData = action.payload;
     },
   },
   extraReducers: builder => {

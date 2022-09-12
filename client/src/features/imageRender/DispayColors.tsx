@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppSelector } from '../../hooks';
 import { Canvas } from '../../components/Canvas';
 import { rgbToHex } from '../../helpers';
+
 import '../../styles/Imagedisplay.css';
 
 const toPercent = (number: number) => {
@@ -9,27 +10,27 @@ const toPercent = (number: number) => {
 };
 
 export const DisplayColors: React.FC = () => {
-  const { image, imageColors, current} = useAppSelector(state => state.image);
+  const { imageUrl, imageColors, imageData} = useAppSelector(state => state.image);
 
   return (
-    (image && imageColors) &&
+    (imageUrl && imageColors) &&
         <div
           className='display-container'
         >
           <div className='image-data'>
             {
-              current && 
+              imageData && 
                 <div>
-                  <h3 >{current.brand}</h3>
-                  <h1 >{current.name}</h1>
-                  <h2 >{current.silhouette}</h2>
-                  <p>Release Date: {current.release_date}</p>
-                  <p>Market Value Price: ${current.estimated_market_value}</p>      
+                  <h3 >{imageData.brand}</h3>
+                  <h1 >{imageData.name}</h1>
+                  <h2 >{imageData.silhouette}</h2>
+                  <p>Release Date: {imageData.release_date}</p>
+                  <p>Market Value Price: ${imageData.estimated_market_value}</p>      
                 </div>
             }
           </div>
           <div className='image-and-colors'>
-            <Canvas image={image}/>
+            <Canvas image={imageUrl}/>
             <div className='palette'>
               {imageColors.map((color: any, id: number) => {
                 return (
