@@ -38,8 +38,8 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
       //create element element with image source
       const img : any = new Image();
       img.src = image;
-      img.height = 400; 
-      img.width = 400; 
+      img.height = 500; 
+      img.width = 500; 
       img.crossOrigin = 'Anonymous';
 
       //when image loads, create canvas of image
