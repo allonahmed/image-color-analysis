@@ -1,12 +1,16 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
+import { ImageData } from '../../types';
 // import Swiper styles
 import 'swiper/css/thumbs';
 import 'swiper/css';
 
+type Props = {
+  data: ImageData[] 
+}
+export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
 
-export const Relateable = () => {
   return (
     <div color='green' style={{width:'100%'}}>
       <Swiper 
@@ -17,13 +21,13 @@ export const Relateable = () => {
         }} 
         className="mySwiper" 
         modules={[Pagination]}>
-        {[0,0,0,0,0,0,0,0].map((_,id)=> {
+        {data.map((item: ImageData,id: number)=> {
           return (
             <SwiperSlide 
               key={id}
               className='slide noselect'
             >
-              slide {id + 1}
+              <img src={item?.thumbnail_image}/>
             </SwiperSlide>
           );
         })}

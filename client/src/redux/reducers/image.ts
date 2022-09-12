@@ -11,13 +11,15 @@ export type imageState = {
   imageType: string | null | any
   imageColors: Array<imageColors> | null;
   imageData: ImageData
+  related: ImageData[];
 };
 
 const initialState: imageState = {
   imageUrl: null,
   imageType: null,
   imageColors: null,
-  imageData: null
+  imageData: null,
+  related: []
 };
 
 export const fetchImageType = createAsyncThunk('image/fetchImage', 
@@ -47,6 +49,9 @@ const imageSlice = createSlice({
     updateImageData: (state, action: PayloadAction<any>) => {
       state.imageData = action.payload;
     },
+    updatedRelated: (state, action: PayloadAction<any>) => {
+      state.related = action.payload;
+    }
   },
   extraReducers: builder => {
     builder.addCase(fetchImageType.pending, (state, action) => {
@@ -61,6 +66,6 @@ const imageSlice = createSlice({
   }
 });
 
-export const { updateImage, updateImageColors, updateImageData } = imageSlice.actions;
+export const { updateImage, updateImageColors, updateImageData, updatedRelated } = imageSlice.actions;
 
 export default imageSlice.reducer;

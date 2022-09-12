@@ -11,8 +11,7 @@ const toPercent = (number: number) => {
 };
 
 export const DisplayColors: React.FC = () => {
-  const { imageUrl, imageColors, imageData} = useAppSelector(state => state.image);
-
+  const { imageUrl, imageColors, imageData, related} = useAppSelector(state => state.image);
   return (
     (imageUrl && imageColors) &&
         <div
@@ -25,7 +24,7 @@ export const DisplayColors: React.FC = () => {
               <h3 >{imageData.name} ({imageData.release_year})</h3>
             </div>
             <div style={{width:'100%'}}>
-              <Relateable />
+              <Relateable data={related}/>
             </div>
             <div className='product-info'>
               <h4>Product Information</h4>

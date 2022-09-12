@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { FiCheck, FiX as DeleteQuery, FiSearch as SearchIcon} from 'react-icons/fi';
 import { useAppDispatch } from '../../hooks';
-import { fetchImageType, updateImageData, updateImageColors } from '../../redux/reducers/image';
+import { fetchImageType, updateImageData, updateImageColors, updatedRelated } from '../../redux/reducers/image';
 import { updateLoading } from '../../redux/reducers/system';
 import { UploadImage } from '../../api/uploadImage';
 import axios from 'axios';
@@ -33,8 +33,10 @@ export const SneakerSelect: React.FunctionComponent = () => {
     setCurrent(item);
     dispatch(updateImageData(item)); 
     dispatch(updateLoading(true));
-    await getRelated(item.silhouette).then((resp)=> console.log(resp));
-    UploadImage(item.thumbnail_image).then((res) => {
+    await getRelated(item.silhouette).then((resp)=> {
+      dispatch(updatedRelated(resp));
+    });
+    await UploadImage(item.thumbnail_image).then((res) => {
       dispatch(updateImageColors(res));
       dispatch(updateLoading(false));
       dispatch(fetchImageType(item.thumbnail_image));
