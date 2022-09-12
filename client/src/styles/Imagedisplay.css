@@ -69,7 +69,33 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
-.image-data .product-info > p {
-  padding: 10px 0;
+.image-data .product-info > h4 {
+  font-size: 22px;
+  padding-bottom: 5px;
+}
+.image-data .product-info .table {
+  display: flex;
+  width: 100%;
+}
+.image-data .product-info .table .label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 40%;
+}
+.image-data .product-info .table .label > p {
+  color: rgba(0,0,0,.75);
+  padding: 5px 0;
+}
+.image-data .product-info .table .data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 60%;
+}
+.image-data .product-info .table .data > p {
+  font-weight: 900;
+  padding: 5px 0;
 }

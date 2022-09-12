@@ -25,18 +25,22 @@ export const DisplayColors: React.FC = () => {
             </div>
             <div className='product-info'>
               <h4>Product Information</h4>
-              <p>
-                <span style={{color: 'rgba(0,0,0,.7)'}}>Colorway:</span> 
-                {imageData.colorway}
-              </p>
-              <p>
-                <span style={{color: 'rgba(0,0,0,.7)'}}>Release Date: </span>
-                {imageData.release_date}
-              </p>
-              <p>
-                <span style={{color: 'rgba(0,0,0,.7)'}}>Market Value Price: </span>
-                ${imageData.estimated_market_value}
-              </p>      
+              <div className='table'>
+                <div className='label'>
+                  <p>SKU</p>
+                  <p>Colorway </p>
+                  <p>Release Date</p>
+                  <p>Retail Price</p>
+                  <p>Market Price</p>
+                </div>
+                <div className='data'>
+                  <p>{imageData.sku}</p>
+                  <p>{imageData.colorway}</p>
+                  <p>{imageData.release_date}</p>
+                  <p>{imageData.retail_price ? `$${imageData.retail_price}` : '???'}</p>
+                  <p>{imageData.estimated_market_value ? `$${imageData.estimated_market_value}` : '???'}</p>
+                </div>
+              </div>     
             </div>
           </div> }
 
