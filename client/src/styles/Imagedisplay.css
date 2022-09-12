@@ -45,4 +45,31 @@
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.image-data .product-header {
+  padding: 10px 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.image-data .product-header > h2 {
+  font-size: 30px;
+}
+.image-data .product-header > h3 {
+  font-size: 20px;
+  color: rgba(0,0,0,.5);
+  text-align: left;
+}
+.image-data .product-info {
+  padding: 0 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.image-data .product-info > p {
+  padding: 10px 0;
 }

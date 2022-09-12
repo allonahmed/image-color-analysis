@@ -17,18 +17,29 @@ export const DisplayColors: React.FC = () => {
         <div
           className='display-container'
         >
+          { imageData && 
           <div className='image-data'>
-            {
-              imageData && 
-                <div>
-                  <h3 >{imageData.brand}</h3>
-                  <h1 >{imageData.name}</h1>
-                  <h2 >{imageData.silhouette}</h2>
-                  <p>Release Date: {imageData.release_date}</p>
-                  <p>Market Value Price: ${imageData.estimated_market_value}</p>      
-                </div>
-            }
-          </div>
+            <div className='product-header'> 
+              <h2 >{imageData.silhouette}</h2>
+              <h3 >{imageData.name} ({imageData.release_year})</h3>
+            </div>
+            <div className='product-info'>
+              <h4>Product Information</h4>
+              <p>
+                <span style={{color: 'rgba(0,0,0,.7)'}}>Colorway:</span> 
+                {imageData.colorway}
+              </p>
+              <p>
+                <span style={{color: 'rgba(0,0,0,.7)'}}>Release Date: </span>
+                {imageData.release_date}
+              </p>
+              <p>
+                <span style={{color: 'rgba(0,0,0,.7)'}}>Market Value Price: </span>
+                ${imageData.estimated_market_value}
+              </p>      
+            </div>
+          </div> }
+
           <div className='image-and-colors'>
             <Canvas image={imageUrl}/>
             <div className='palette'>
