@@ -101,23 +101,41 @@
 }
 
 /* swiper container */
+.swiper-container {
+  height: 240px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.swiper-container > h4 {
+  text-align: left;
+  font-size: 22px;
+  padding-left: 10px;
+}
 .mySwiper{
   display: flex;
-  height: 220px;
+  height: 240px !important;
 }
 .swiper-wrapper{
   display: flex;
   flex-direction: row;
 }
 .slide {
-  width: 100px; 
-  border: 1px solid green;
+  height: 200px !important;
+  border: 1px solid rgba(0,0,0,.075);
+  box-shadow: 0 0 10px rgba(0,0,0,.105);
+  border-radius: 10px;
   color: white;
-  margin: 10px;
+  margin: 10px !important;
+  cursor: pointer;
 }
 .slide > img {
-  height: 100px;
-  width: 100px;
+  height: 130px;
+  width: 130px;
+}
+.slide > p {
+  font-size: 13px;
+  color: #222;
+  padding: 0 5px;
 }
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */

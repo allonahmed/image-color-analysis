@@ -12,7 +12,8 @@ type Props = {
 export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
 
   return (
-    <div color='green' style={{width:'100%'}}>
+    <div className='swiper-container'>
+      <h4>Related Sneakers</h4>
       <Swiper 
         slidesPerView={3}  
         spaceBetween={30} 
@@ -21,13 +22,14 @@ export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
         }} 
         className="mySwiper" 
         modules={[Pagination]}>
-        {data.map((item: ImageData,id: number)=> {
+        {data.map((item: ImageData, id: number)=> {
           return (
             <SwiperSlide 
               key={id}
               className='slide noselect'
             >
               <img src={item?.thumbnail_image}/>
+              <p>{item?.name}</p>
             </SwiperSlide>
           );
         })}

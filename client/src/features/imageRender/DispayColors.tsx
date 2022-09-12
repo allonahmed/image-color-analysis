@@ -23,9 +23,7 @@ export const DisplayColors: React.FC = () => {
               <h2 >{imageData.silhouette}</h2>
               <h3 >{imageData.name} ({imageData.release_year})</h3>
             </div>
-            <div style={{width:'100%'}}>
-              <Relateable data={related}/>
-            </div>
+
             <div className='product-info'>
               <h4>Product Information</h4>
               <div className='table'>
@@ -44,6 +42,10 @@ export const DisplayColors: React.FC = () => {
                   <p>{imageData.estimated_market_value ? `$${imageData.estimated_market_value}` : '???'}</p>
                 </div>
               </div>     
+            </div>
+
+            <div style={{width:'100%'}}>
+              <Relateable data={related}/>
             </div>
           </div> }
 
