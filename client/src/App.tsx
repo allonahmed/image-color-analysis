@@ -5,6 +5,7 @@ import { Navigator } from './navigation/Navigator';
 import { Loading } from './components/Loading';
 
 import './App.css';
+import './styles/fonts.css';
 
 const App: React.FC = () => {
   return (
