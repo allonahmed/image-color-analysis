@@ -71,6 +71,13 @@ app.post('/get-sneakers', (req, res) => {
   })
 })
 
+app.get('/get-all', (_, res) => {
+  db.query('SELECT * FROM sneakers;', (err, result) => {
+    if (err) res.send({ message: err })
+    else res.send(result)
+  })
+})
+
 app.use(cors(corsOptions));
 
 const PORT = 2020;

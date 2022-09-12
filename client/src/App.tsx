@@ -5,9 +5,14 @@ import { Navigator } from './navigation/Navigator';
 import { Loading } from './components/Loading';
 
 import './App.css';
+import { GetAll } from './api/testapi';
 
 
 const App: React.FC = () => {
+  React.useEffect(()=> {
+    GetAll();
+  },[]);
+
   return (
     <div className="App">
       <Navigator />
