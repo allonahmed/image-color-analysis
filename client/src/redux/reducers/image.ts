@@ -34,7 +34,12 @@ const imageSlice = createSlice({
   initialState: initialState,
   reducers: {
     updateImage: (state, action: any) => {
-      state.image = action.payload;
+      let url = action.payload;
+      if(url.includes('images.stockx')){
+        url = url.replace('bg=FFFFFF', 'bg=222222');
+        console.log(url);
+      }
+      state.image = url;
     },
     updateImageColors: (state, action: PayloadAction<imageColors[]>) => {
       state.imageColors = action.payload;
