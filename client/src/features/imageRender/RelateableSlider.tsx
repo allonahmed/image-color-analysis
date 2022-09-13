@@ -1,18 +1,21 @@
-import React, { useRef } from 'react';
+import React, {  useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import { ImageData } from '../../types';
-import {MdNavigateBefore, MdOutlineNavigateNext} from 'react-icons/md';
+import { MdNavigateBefore, MdOutlineNavigateNext} from 'react-icons/md';
 // import Swiper styles
 import 'swiper/css/navigation';
 import 'swiper/css';
+import store from '../../redux/store';
 
 type Props = {
   data: ImageData[] 
 }
 export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
   const prev = useRef(null), next = useRef(null);
-  return (
+  const loading = store.getState().system.loading;
+
+  return !loading ?
     <div className='swiper-container'>
       <div className='swiper-header'>
         <h4 className='noselect'>Related Sneakers</h4>
@@ -29,9 +32,14 @@ export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
         slidesPerView={3}  
         spaceBetween={30} 
         onBeforeInit={(swiper: any) => {
+          swiper.slideTo(0);
           swiper.params.navigation.prevEl = prev.current;
           swiper.params.navigation.nextEl = next.current;
+          swiper.navigation.destroy();
+          swiper.navigation.init();
+          swiper.navigation.update();
         }}
+        onUpdate={(swiper)=> swiper.slideTo(0)}
         navigation={{
           prevEl: prev.current,
           nextEl: next.current
@@ -51,5 +59,5 @@ export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
         })}
       </Swiper>
     </div>
-  );
+    : <div></div>;
 };

@@ -137,7 +137,7 @@
 .mySwiper{
   display: flex;
   height: 240px !important;
-  margin: 0 20px !important;
+  margin: 0 0px !important;
 }
 .mySwiper .button {
   position: absolute;
