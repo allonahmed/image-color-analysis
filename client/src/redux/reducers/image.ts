@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { ImageData } from '../../types';
 
 export type imageColors = {
   color: Array<number>;
@@ -6,45 +7,65 @@ export type imageColors = {
 };
 
 export type imageState = {
-  image: any;
-  imageType: string | null
+  imageUrl: any;
+  imageType: string | null | any
   imageColors: Array<imageColors> | null;
-  current: any
+  imageData: ImageData
+  related: ImageData[];
 };
 
 const initialState: imageState = {
-  image: null,
+  imageUrl: null,
   imageType: null,
   imageColors: null,
-  current: null
+  imageData: null,
+  related: []
 };
+
+export const fetchImageType = createAsyncThunk('image/fetchImage', 
+  async (img : string, { dispatch }) => {
+    return await fetch(img)
+      .then(async response => {
+        const blob = await response.blob();
+        dispatch(updateImage(img));
+        return `${blob.type.substring(6,blob.type.length)}`;
+      }).catch((err)=> console.log(err));
+  });
 
 const imageSlice = createSlice({
   name: 'image',
   initialState: initialState,
   reducers: {
     updateImage: (state, action: any) => {
-      state.image = action.payload;
+      let url = action.payload;
+      if(url.includes('images.stockx')){
+        url = url.replace('bg=FFFFFF', 'bg=222222');
+      }
+      state.imageUrl = url;
     },
     updateImageColors: (state, action: PayloadAction<imageColors[]>) => {
       state.imageColors = action.payload;
     },
-    updateCurrent: (state, action: PayloadAction<any>) => {
-      state.current = action.payload;
+    updateImageData: (state, action: PayloadAction<any>) => {
+      state.imageData = action.payload;
     },
-    updateImageType: (state, action: any) =>  {
-      let image = null;
-      fetch(action.payload)
-        .then(async response => {
-          const blob = await response.blob();
-          image = `${blob.type.substring(6,blob.type.length)}`;
-          console.log(image);
-        }).catch((err)=> console.log(err));
-      state.imageType = image;
+    updatedRelated: (state, action: PayloadAction<any>) => {
+      state.related = action.payload;
     }
+  },
+  extraReducers: builder => {
+    builder.addCase(fetchImageType.pending, (state, action) => {
+      console.log('loading');
+    }),
+    builder.addCase(fetchImageType.fulfilled, (state, action) => {
+      state.imageType = action.payload;
+    }),
+    builder.addCase(fetchImageType.rejected, (state, action) => {
+      console.log('failed to get image type');
+    });
   }
 });
 
-export const { updateImage, updateImageColors, updateCurrent, updateImageType } = imageSlice.actions;
+export const { updateImage, updateImageColors, updateImageData, updatedRelated } = imageSlice.actions;
 
 export default imageSlice.reducer;

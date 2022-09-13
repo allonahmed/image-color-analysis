@@ -38,15 +38,13 @@ const pool = mysql.createPool({
   port: "3306",
 });
 
+//test
 pool.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
   if (error) throw error;
   console.log('The solution is: ', results[0].solution);
 });
 
-app.post('/send-data', (req, res) => {
-  const data = req.body;
-  res.send(data)
-})
+//add new rows of data
 app.post('/upload-sneakers', (req, res) => {
   const request = req.body
 
@@ -61,6 +59,7 @@ app.post('/upload-sneakers', (req, res) => {
     })
 })
 
+//get sneakers based on search query
 app.post('/get-sneakers', (req, res) => {
   const param = `%${req.body.query}%`;
   console.log(param)
@@ -71,7 +70,22 @@ app.post('/get-sneakers', (req, res) => {
   })
 })
 
-app.use(cors(corsOptions));
+//get all sneakers in dd
+app.get('/get-all', (_, res) => {
+  db.query('SELECT * FROM sneakers;', (err, result) => {
+    if (err) res.send({ message: err })
+    else res.send(result)
+  })
+})
+
+//get related rows that match silhoutte of sneaker selected
+app.post('/get-related', (req, res) => {
+  const { data } = req.body;
+  const query = 'SELECT * FROM sneakers WHERE silhouette = ? LIMIT 20';
+  db.query(query, data, (err, result) => {
+    res.send(err || result);
+  })
+})
 
 const PORT = 2020;
 

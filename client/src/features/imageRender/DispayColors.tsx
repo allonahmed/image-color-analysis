@@ -2,34 +2,55 @@ import React from 'react';
 import { useAppSelector } from '../../hooks';
 import { Canvas } from '../../components/Canvas';
 import { rgbToHex } from '../../helpers';
+
 import '../../styles/Imagedisplay.css';
+import { Relateable } from './RelateableSlider';
 
 const toPercent = (number: number) => {
   return `${(number.toFixed(2))}%`;
 };
 
 export const DisplayColors: React.FC = () => {
-  const { image, imageColors, current} = useAppSelector(state => state.image);
-
+  const { imageUrl, imageColors, imageData, related} = useAppSelector(state => state.image);
   return (
-    (image && imageColors) &&
+    (imageUrl && imageColors) &&
         <div
           className='display-container'
         >
+          { imageData && 
           <div className='image-data'>
-            {
-              current && 
-                <div>
-                  <h3 >{current.brand}</h3>
-                  <h1 >{current.name}</h1>
-                  <h2 >{current.silhouette}</h2>
-                  <p>Release Date: {current.release_date}</p>
-                  <p>Market Value Price: ${current.estimated_market_value}</p>      
+            <div className='product-header'> 
+              <h2 >{imageData.silhouette}</h2>
+              <h3 >{imageData.name} ({imageData.release_year})</h3>
+            </div>
+
+            <div className='product-info'>
+              <h4>Product Information</h4>
+              <div className='table'>
+                <div className='label'>
+                  <p>SKU</p>
+                  <p>Colorway </p>
+                  <p>Release Date</p>
+                  <p>Retail Price</p>
+                  <p>Market Price</p>
                 </div>
-            }
-          </div>
+                <div className='data'>
+                  <p>{imageData.sku}</p>
+                  <p>{imageData.colorway}</p>
+                  <p>{imageData.release_date}</p>
+                  <p>{imageData.retail_price ? `$${imageData.retail_price}` : '???'}</p>
+                  <p>{imageData.estimated_market_value ? `$${imageData.estimated_market_value}` : '???'}</p>
+                </div>
+              </div>     
+            </div>
+
+            <div style={{width:'100%'}}>
+              <Relateable data={related}/>
+            </div>
+          </div> }
+
           <div className='image-and-colors'>
-            <Canvas image={image}/>
+            <Canvas image={imageUrl}/>
             <div className='palette'>
               {imageColors.map((color: any, id: number) => {
                 return (
