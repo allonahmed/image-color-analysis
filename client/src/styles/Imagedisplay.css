@@ -150,10 +150,11 @@
 }
 .slide {
   height: 200px !important;
-  border: 1px solid rgba(0,0,0,.075);
-  box-shadow: 0 0 10px rgba(0,0,0,.105);
+  border: 1px solid #fd924633;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.105);
   border-radius: 10px;
   color: white;
+  background-color: #fff;
   margin: 10px !important;
   cursor: pointer;
 }

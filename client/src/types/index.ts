@@ -9,7 +9,7 @@ export type ImageData = {
   estimated_market_value?: number;
   retail_price?: number;
   original_image?: string;
-  thumbnail_image?: string;
+  thumbnail_image: string;
   story?: string | null;
   release_year?: string;
   release_date?: string;

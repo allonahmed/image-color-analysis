@@ -7,7 +7,7 @@ export const GetAll = async () => {
     catch(err => console.log(err.message));
 };
 
-export const getRelated = async (related: string) => {
+export const getRelated = async (related: any) => {
   return await axios.post('http://localhost:2020/get-related', {
     data: related
   }).then((res)=>{
