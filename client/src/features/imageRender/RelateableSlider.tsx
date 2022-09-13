@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import { ImageData } from '../../types';
+import {MdNavigateBefore, MdOutlineNavigateNext} from 'react-icons/md';
 // import Swiper styles
 import 'swiper/css/navigation';
 import 'swiper/css';
@@ -13,7 +14,17 @@ export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
   const prev = useRef(null), next = useRef(null);
   return (
     <div className='swiper-container'>
-      <h4>Related Sneakers</h4>
+      <div className='swiper-header'>
+        <h4 className='noselect'>Related Sneakers</h4>
+        <div className='button-container'>
+          <div className='prev button' ref={prev}>
+            <MdNavigateBefore className='button-icon'/>
+          </div>
+          <div className='next button'ref={next}>
+            <MdOutlineNavigateNext className='button-icon' />
+          </div>
+        </div>
+      </div>
       <Swiper 
         slidesPerView={3}  
         spaceBetween={30} 
@@ -38,8 +49,6 @@ export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
             </SwiperSlide>
           );
         })}
-        <div className='prev' ref={prev}>prev</div>
-        <div className='next'ref={next}>next</div>
       </Swiper>
     </div>
   );

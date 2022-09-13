@@ -106,29 +106,53 @@
   width: 100%;
   margin-bottom: 10px;
 }
-.swiper-container > h4 {
+
+.swiper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10px;
+}
+.swiper-header > h4 {
   text-align: left;
   font-size: 22px;
-  padding-left: 10px;
+}
+.swiper-header .button-container {
+  display: flex;
+}
+.button-container .button {
+  height: 25px;
+  width: 25px;
+  background-color: #FF6200;
+  color: rgb(245,245,245);
+  border-radius: 50%;
+  margin-left: 5px;
+  display: grid;
+  place-content: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.402);
+}
+.button-container .button .button-icon{
+  font-size: 24px;
 }
 .mySwiper{
   display: flex;
   height: 240px !important;
+  margin: 0 20px !important;
 }
-.mySwiper .prev {
+.mySwiper .button {
   position: absolute;
-  background-color: #fff;
-  color: #222;
+  border-radius: 100%;
+  display: grid;
+  place-content: center;
+  color: #fff;
   z-index: 100;
-  top: 100px;
+  top: -50px;
+  cursor: pointer;
+  overflow: visible !important;
 }
-.mySwiper .next {
-  position: absolute;
-  right: 0;
-  top: 100px;
-  background-color: #fff;
-  color: #222;
-  z-index: 100;
+.mySwiper .button .button-icon {
+  color: #FF6200;
+  font-size: 40px;
 }
 .swiper-wrapper{
   display: flex;
