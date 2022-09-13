@@ -80,9 +80,9 @@ app.get('/get-all', (_, res) => {
 
 //get related rows that match silhoutte of sneaker selected
 app.post('/get-related', (req, res) => {
-  const { data } = req.body;
-  const query = 'SELECT * FROM sneakers WHERE silhouette = ? LIMIT 20';
-  db.query(query, data, (err, result) => {
+  const { silhouette, sku } = req.body;
+  const query = 'SELECT * FROM sneakers WHERE silhouette = ? AND sku != ? LIMIT 20';
+  db.query(query, [silhouette, sku], (err, result) => {
     res.send(err || result);
   })
 })

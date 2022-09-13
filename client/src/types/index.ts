@@ -1,9 +1,9 @@
 export type ImageData = {
   id?: string;
-  sku?: string;
+  sku: string;
   brand?: string;
   name?: string;
-  silhouette?: string;
+  silhouette: string;
   colorway?: string;
   gender?: string; 
   estimated_market_value?: number;

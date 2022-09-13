@@ -33,7 +33,7 @@ export const SneakerSelect: React.FunctionComponent = () => {
     setCurrent(item);
     dispatch(updateImageData(item)); 
     dispatch(updateLoading(true));
-    await getRelated(item.silhouette).then((resp)=> {
+    await getRelated(item.silhouette, item.sku).then((resp)=> {
       dispatch(updatedRelated(resp));
     });
     await UploadImage(item.thumbnail_image).then((res) => {

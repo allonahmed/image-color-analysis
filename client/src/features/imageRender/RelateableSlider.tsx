@@ -63,19 +63,20 @@ export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
               key={id}
               className='slide noselect'
               onClick={async ()=> {
-                dispatch(updateLoading(true));
-                await getRelated(item?.silhouette).then((resp)=> {
-                  dispatch(updatedRelated(resp));
-                });
-                dispatch(updateImageData(item));
-                dispatch(updateImage(item?.thumbnail_image));
-                if(item?.thumbnail_image)
+                if (item){
+                  dispatch(updateLoading(true));
+                  await getRelated(item.silhouette, item.sku).then((resp)=> {
+                    dispatch(updatedRelated(resp));
+                  });
+                  dispatch(updateImageData(item));
+                  dispatch(updateImage(item?.thumbnail_image));
                   await UploadImage(item.thumbnail_image).then((res) => {
                     dispatch(updateImageColors(res));
                     dispatch(updateLoading(false));
                     dispatch(fetchImageType(item.thumbnail_image));
                   });
-                dispatch(updateLoading(false));
+                  dispatch(updateLoading(false));
+                }
               }}
             >
               <img src={setImage(item?.thumbnail_image)}/>
