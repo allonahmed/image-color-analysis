@@ -41,13 +41,14 @@ export const SneakerSelect: React.FunctionComponent = () => {
       dispatch(updateLoading(false));
       dispatch(fetchImageType(item.thumbnail_image));
     });
+    setQuery(''); //for now
   };
 
   return (  
     <div className='sneaker-selection-container' >
       <button className='sneaker-selection-input-container'>
         <SearchIcon className='input-search-icon' color={'black'}/>
-        { current  && <img src={current.thumbnail_image} className='input-image'/>}
+        {/* { current  && <img src={current.thumbnail_image} className='input-image'/>} */}
         <input 
           type='text' 
           value={query} 

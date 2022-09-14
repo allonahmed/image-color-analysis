@@ -20,6 +20,7 @@ const removeExtra = (data: string) => {
 
 export const DisplayColors: React.FC = () => {
   const { imageUrl, imageColors, imageData, related} = useAppSelector(state => state.image);
+  console.log(imageColors);
   return (
     (imageUrl && imageColors) &&
         <div
@@ -67,8 +68,8 @@ export const DisplayColors: React.FC = () => {
                     <div
                       className='palette-color'
                       style={{
-                        // backgroundColor: `rgb(${color.color[0]}, ${color.color[1]}, ${color.color[2]}`,
-                        backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
+                        backgroundColor: `rgba(${color.color[0]}, ${color.color[1]}, ${color.color[2]}, ${color.color[3]}`,
+                        // backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
                         boxShadow: `0 0 5px 1px rgb(${color[0]}, ${color[1]}, ${color[2]})`
                       }}
                     >

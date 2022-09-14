@@ -1,8 +1,8 @@
 import React, {  useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Navigation, Mousewheel } from 'swiper';
 import { ImageData } from '../../types';
-import { MdNavigateBefore, MdOutlineNavigateNext} from 'react-icons/md';
+import { MdNavigateBefore, MdOutlineNavigateNext } from 'react-icons/md';
 import { useAppDispatch } from '../../hooks';
 import store from '../../redux/store';
 
@@ -56,7 +56,8 @@ export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
           nextEl: next.current
         }}
         className="mySwiper" 
-        modules={[Navigation]}>
+        mousewheel={true}
+        modules={[Navigation, Mousewheel]}>
         {data.map((item: ImageData, id: number)=> {
           return (
             <SwiperSlide 
