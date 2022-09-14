@@ -73,10 +73,12 @@ export const DisplayColors: React.FC = () => {
                         boxShadow: `0 0 5px 1px rgb(${color[0]}, ${color[1]}, ${color[2]})`
                       }}
                     >
+                      
                       <div className='palette-hex'>
-                        {rgbToHex(color[0], color[1], color[2])}
+                        {rgbToHex(color.color[0], color.color[1], color.color[2])}
                       </div>
                     </div>
+                    <div>{toPercent(color.percentage)}</div>
                   </div>
                 );
               })}
