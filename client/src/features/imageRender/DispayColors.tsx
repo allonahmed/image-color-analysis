@@ -10,8 +10,17 @@ const toPercent = (number: number) => {
   return `${(number.toFixed(2))}%`;
 };
 
+const removeExtra = (data: string) => {
+  if(data.includes('(')){
+    const substring = data.substring(data.indexOf('('), data.indexOf(')') + 1);
+    return data.replace(substring, '');
+  }
+  return data;
+};
+
 export const DisplayColors: React.FC = () => {
   const { imageUrl, imageColors, imageData, related} = useAppSelector(state => state.image);
+  console.log(imageColors);
   return (
     (imageUrl && imageColors) &&
         <div
@@ -21,7 +30,7 @@ export const DisplayColors: React.FC = () => {
           <div className='image-data'>
             <div className='product-header'> 
               <h2 >{imageData.silhouette}</h2>
-              <h3 >{imageData.name} ({imageData.release_year})</h3>
+              <h3 >{removeExtra(imageData.name)} {imageData.release_year && `(${imageData.release_year})`}</h3>
             </div>
 
             <div className='product-info'>
@@ -59,8 +68,8 @@ export const DisplayColors: React.FC = () => {
                     <div
                       className='palette-color'
                       style={{
-                        // backgroundColor: `rgb(${color.color[0]}, ${color.color[1]}, ${color.color[2]}`,
-                        backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
+                        backgroundColor: `rgba(${color.color[0]}, ${color.color[1]}, ${color.color[2]}, ${color.color[3]}`,
+                        // backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
                         boxShadow: `0 0 5px 1px rgb(${color[0]}, ${color[1]}, ${color[2]})`
                       }}
                     >

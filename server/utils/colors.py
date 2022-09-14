@@ -60,12 +60,22 @@ def total_pixels(path):
     image_size = Image.open(path).size;
     return image_size[0] * image_size[1]
 
+
+def QuantizeImage(image_path):
+    im = Image.open(image_path).convert("RGBA")
+    im1 = im.quantize(4) 
+  
+    # to show specified image 
+    im1.save('./assets/quantized.png', "PNG")
+
+# QuantizeImage('./assets/fileName.png')
 #returns accurate pallete of image (returns rgba of most popular pixel colors)
-def get_color_pallete(path, count = 200):
+def get_color_pallete(path, count = 4):
     # convertImage(path);
     # path = './assets/New.png'
-    colors = sort_list(get_colors(path))
-    pixels = total_pixels(path)
+    QuantizeImage(path)
+    colors = sort_list(get_colors('./assets/quantized.png'))
+    pixels = total_pixels('./assets/quantized.png')
     pallete = []
     for i in range(0, count):
         if(colors[i][1] != (0,0,0,0)):
@@ -74,7 +84,6 @@ def get_color_pallete(path, count = 200):
                     "percentage": round(colors[i][0] / pixels, 8)
                 })
     return pallete
-
 
 
 # make_brians_teeth_yellow('../assets/brian.png')

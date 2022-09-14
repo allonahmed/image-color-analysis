@@ -7,9 +7,10 @@ export const GetAll = async () => {
     catch(err => console.log(err.message));
 };
 
-export const getRelated = async (related: string) => {
+export const getRelated = async (silhouette: string, sku: string) => {
   return await axios.post('http://localhost:2020/get-related', {
-    data: related
+    silhouette: silhouette,
+    sku: sku
   }).then((res)=>{
     return res.data;
   }).catch(err=> console.log(err));

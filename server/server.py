@@ -45,7 +45,7 @@ def fileUpload():
         file.save(destination)
         logger.info(file)
         # session['uploadFilePath']=destination
-        response = ct_pallete_colors('./assets/'+ filename)
+        response = get_color_pallete('./assets/'+ filename)
         return jsonify(response)
     return ''
 

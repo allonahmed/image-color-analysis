@@ -123,36 +123,26 @@
 .button-container .button {
   height: 25px;
   width: 25px;
-  background-color: #FF6200;
-  color: rgb(245,245,245);
+  color: #FF6200;
   border-radius: 50%;
   margin-left: 5px;
   display: grid;
   place-content: center;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.402);
+}
+.button-container .button:hover {
+  color: #FD9346;
+}
+.button-container .button:active {
+  color: #222;
 }
 .button-container .button .button-icon{
-  font-size: 24px;
+  font-size: 35px;
+  cursor: pointer;
 }
 .mySwiper{
   display: flex;
   height: 240px !important;
-  margin: 0 20px !important;
-}
-.mySwiper .button {
-  position: absolute;
-  border-radius: 100%;
-  display: grid;
-  place-content: center;
-  color: #fff;
-  z-index: 100;
-  top: -50px;
-  cursor: pointer;
-  overflow: visible !important;
-}
-.mySwiper .button .button-icon {
-  color: #FF6200;
-  font-size: 40px;
+  margin: 0 0px !important;
 }
 .swiper-wrapper{
   display: flex;
@@ -160,10 +150,11 @@
 }
 .slide {
   height: 200px !important;
-  border: 1px solid rgba(0,0,0,.075);
-  box-shadow: 0 0 10px rgba(0,0,0,.105);
+  border: 1px solid #fd924633;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.105);
   border-radius: 10px;
   color: white;
+  background-color: #fff;
   margin: 10px !important;
   cursor: pointer;
 }
