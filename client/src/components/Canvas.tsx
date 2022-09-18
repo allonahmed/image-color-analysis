@@ -253,6 +253,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         style={{ position:'absolute', zIndex: 300, top: 0, right: 0, cursor: 'pointer' }} 
         id='colors' 
         onMouseMove={moveColor}
+        onMouseLeave={() => setUpdateColor(false)}
         onClick={()=>setUpdateColor(!updateColor)}
       />
       <div className='palette'>
