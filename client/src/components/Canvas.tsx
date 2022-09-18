@@ -18,6 +18,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
   const [color, setColor] = useState<any>(null);
   const { imageColors } = useAppSelector(state => state.image);
   const [position, setPosition] = useState<any>(null);
+  const [ updateColor, setUpdateColor] = useState<boolean>(false);
 
 
   useEffect(()=> {
@@ -94,19 +95,21 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
   // function for getting mouseposition when hovering over canvas (onmouseover method)
   const getPosition = (e: SyntheticEvent) => {
     // canvas of color shapes
-    const colorCanvas : any  = document.getElementById('colors');
-    // canvas of image
-    const imageCanvas : any  = document.getElementById('canvas');
-    const imageCtx = imageCanvas.getContext('2d');
+    if(updateColor)
+    {    
+      const colorCanvas : any  = document.getElementById('colors');
+      // canvas of image
+      const imageCanvas : any  = document.getElementById('canvas');
+      const imageCtx = imageCanvas.getContext('2d');
 
-    const pos = getMousePosition(colorCanvas, e);
-    const x = pos.x;
-    const y =  pos.y;
+      const pos = getMousePosition(colorCanvas, e);
+      const x = pos.x;
+      const y =  pos.y;
     
-    // set color of current mouseover location by getting imagedata of canvas pixel
-    setColor(`rgba(${imageCtx.getImageData(x, y, 1, 1).data[0]},${imageCtx.getImageData(x, y, 1, 1).data[1]}, ${imageCtx.getImageData(x, y, 1, 1).data[2]}, 1)`);
-    //update position as state
-    positionCheck(x, y);
+      // set color of current mouseover location by getting imagedata of canvas pixel
+      setColor(`rgba(${imageCtx.getImageData(x, y, 1, 1).data[0]},${imageCtx.getImageData(x, y, 1, 1).data[1]}, ${imageCtx.getImageData(x, y, 1, 1).data[2]}, 1)`);
+      //update position as state
+      positionCheck(x, y);}
   };
 
 
@@ -184,7 +187,12 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
       <canvas 
         id={'canvas'}
       />
-      <canvas  style={{position:'absolute', zIndex: 300, top: 0, right: 0}} id='colors' onMouseMove={getPosition}/>
+      <canvas  
+        style={{position:'absolute', zIndex: 300, top: 0, right: 0}} 
+        id='colors' 
+        onMouseMove={getPosition}
+        onClick={()=>setUpdateColor(!updateColor)}
+      />
       {/* <div style={{height: '50px', width: '50px', backgroundColor: color || 'green', marginBottom: '50px'}}></div> */}
       <div className='palette'>
         {imageColors && imageColors.map((color: any, id: number) => {
