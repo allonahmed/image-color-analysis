@@ -6,8 +6,8 @@ import { rgbToHex } from '../../helpers';
 import '../../styles/Imagedisplay.css';
 import { Relateable } from './RelateableSlider';
 
-const toPercent = (number: number) => {
-  return `${(number.toFixed(2))}%`;
+const toPercent = (num: any) => {
+  return `${(Math.round(num * 100))}%`;
 };
 
 const removeExtra = (data: string) => {
@@ -60,29 +60,6 @@ export const DisplayColors: React.FC = () => {
 
           <div className='image-and-colors'>
             <Canvas image={imageUrl}/>
-            <div className='palette'>
-              {imageColors.map((color: any, id: number) => {
-                return (
-                  <div key={id} className='palette-item'>
-                    {/* <div style={{fontSize:'8px'}}>rgb({color.color[0]},{color.color[1]}, {color.color[2]})</div> */}
-                    <div
-                      className='palette-color'
-                      style={{
-                        backgroundColor: `rgba(${color.color[0]}, ${color.color[1]}, ${color.color[2]}, ${color.color[3]}`,
-                        // backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
-                        boxShadow: `0 0 5px 1px rgb(${color[0]}, ${color[1]}, ${color[2]})`
-                      }}
-                    >
-                      
-                      <div className='palette-hex'>
-                        {rgbToHex(color.color[0], color.color[1], color.color[2])}
-                      </div>
-                    </div>
-                    <div>{toPercent(color.percentage)}</div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
   );

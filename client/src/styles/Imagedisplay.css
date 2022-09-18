@@ -36,9 +36,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .palette-hex {
-  font-size: 12px;
+  font-size: 14px;
 }
 .image-data {
   width: 550px;

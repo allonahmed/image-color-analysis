@@ -13,4 +13,9 @@ const hexToRgb = (hex: string) =>{
   } : null;
 };
 
-export { rgbToHex, hexToRgb };
+//returns color (black or white based on brightness of inputted color)
+const getContrast = (rgb: any) => {
+  return (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000 > 125 ? 'black' : 'white';
+};
+
+export { rgbToHex, hexToRgb, getContrast };
