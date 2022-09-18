@@ -59,7 +59,7 @@ def total_pixels(path):
 #using pil quantized module to quantize 
 def QuantizeImage(image_path):
     im = Image.open(image_path).convert("RGBA")
-    im1 = im.quantize(6) 
+    im1 = im.quantize(10) 
     im1.save('./assets/quantized.png', "PNG")
     return './assets/quantized.png'
 

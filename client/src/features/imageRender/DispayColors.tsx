@@ -6,8 +6,8 @@ import { rgbToHex } from '../../helpers';
 import '../../styles/Imagedisplay.css';
 import { Relateable } from './RelateableSlider';
 
-const toPercent = (number: number) => {
-  return `${(number.toFixed(2))}%`;
+const toPercent = (num: any) => {
+  return `${(Math.round(num * 100))}%`;
 };
 
 const removeExtra = (data: string) => {
