@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
-import { rgbToHex } from '../helpers';
+import { getContrast, rgbToHex } from '../helpers';
 import { useAppSelector } from '../hooks';
 
 /**
@@ -146,7 +146,10 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
                   boxShadow: `0 0 5px 1px rgb(${color[0]}, ${color[1]}, ${color[2]})`
                 }}
               >
-                <div className='palette-hex'>
+                <div 
+                  className='palette-hex'
+                  style={{color: getContrast({r: color.color[0], g: color.color[1], b: color.color[2]})}}
+                >
                   {/* {`rgba(${color.color[0]}, ${color.color[1]}, ${color.color[2]}, ${color.color[3]})`} */}
                   { rgbToHex(color.color[0], color.color[1], color.color[2]) }
                 </div>
