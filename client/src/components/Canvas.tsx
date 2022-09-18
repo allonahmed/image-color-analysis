@@ -21,6 +21,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
 
   let colorCanvas: any;
   let colorContext: any;
+  const imageSize = 500;
 
   const [ color, setColor ] = useState<any>(null); // color of mouseposition pixel in canvas
   const [ updateColor, setUpdateColor ] = useState<boolean>(false); // boolean to allow shapes to be moved
@@ -36,48 +37,50 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
       //create element element with image source
       const img : any = new Image();
       img.src = image;
-      img.height = 500; 
-      img.width = 500; 
+      img.height = img.width = imageSize;
       img.crossOrigin = 'Anonymous';
 
       //when image loads, create canvas of image
       img.onload = () => {
         //creating canvas from image  
         imageCanvas = document.getElementById('canvas');
-        imageContext = imageCanvas.getContext('2d');
-        const canvas = imageContext.canvas;   
-        imageContext.clearRect(0, 0, canvas.width, canvas.height);
-        canvas.height = img.height; 
-        canvas.width = img.width;
+        imageContext = imageCanvas.getContext('2d');  
+        imageCanvas.height = imageCanvas.width = imageSize; 
+        imageContext.clearRect(0, 0, imageCanvas.width, imageCanvas.height);
         imageContext.drawImage(img, 0,0, img.width, img.height);
-
 
         // create colors canvas and places shapes inside
         colorCanvas   = document.getElementById('colors');
         colorContext = colorCanvas.getContext('2d');
-        const myc = colorContext.canvas;  
-        myc.height = 500; 
-        myc.width = 500;   
-        colorContext.clearRect(0, 0, myc.width, myc.height); 
+        colorCanvas.height = colorCanvas.width = imageSize;  
+        colorContext.clearRect(0, 0, colorCanvas.width, colorCanvas.height); 
 
-        CreateShape(
-          canvas.height, 
-          canvas.width, 
-          `rgba(${imageColors[0].color[0]}, ${imageColors[0].color[1]}, ${imageColors[0].color[2]}, ${imageColors[0].color[3]})`,
-          getPositionFromColor(imageContext, [imageColors[0].color[0], imageColors[0].color[1], imageColors[0].color[2]]),
-        );
-        CreateShape(
-          canvas.height, 
-          canvas.width, 
-          `rgba(${imageColors[1].color[0]}, ${imageColors[1].color[1]}, ${imageColors[1].color[2]}, ${imageColors[1].color[3]})`,
-          getPositionFromColor(imageContext, [imageColors[1].color[0], imageColors[1].color[1], imageColors[1].color[2]]),
-        );
-        CreateShape(
-          canvas.height, 
-          canvas.width, 
-          `rgba(${imageColors[2].color[0]}, ${imageColors[2].color[1]}, ${imageColors[2].color[2]}, ${imageColors[2].color[3]})`, 
-          getPositionFromColor(imageContext, [imageColors[2].color[0], imageColors[2].color[1], imageColors[2].color[2]]),
-        );
+        // CreateShape(
+        //   imageCanvas.height, 
+        //   imageCanvas.width, 
+        //   `rgba(${imageColors[0].color[0]}, ${imageColors[0].color[1]}, ${imageColors[0].color[2]}, ${imageColors[0].color[3]})`,
+        //   getPositionFromColor(imageContext, [imageColors[0].color[0], imageColors[0].color[1], imageColors[0].color[2]]),
+        // );
+        // CreateShape(
+        //   imageCanvas.height, 
+        //   imageCanvas.width, 
+        //   `rgba(${imageColors[1].color[0]}, ${imageColors[1].color[1]}, ${imageColors[1].color[2]}, ${imageColors[1].color[3]})`,
+        //   getPositionFromColor(imageContext, [imageColors[1].color[0], imageColors[1].color[1], imageColors[1].color[2]]),
+        // );
+        // CreateShape(
+        //   imageCanvas.height, 
+        //   imageCanvas.width, 
+        //   `rgba(${imageColors[2].color[0]}, ${imageColors[2].color[1]}, ${imageColors[2].color[2]}, ${imageColors[2].color[3]})`, 
+        //   getPositionFromColor(imageContext, [imageColors[2].color[0], imageColors[2].color[1], imageColors[2].color[2]]),
+        // );
+        for(let i = 0; i < imageColors.length; i += 1){
+          CreateShape(
+            imageCanvas.height, 
+            imageCanvas.width, 
+            `rgba(${imageColors[i].color[0]}, ${imageColors[i].color[1]}, ${imageColors[i].color[2]}, ${imageColors[i].color[3]})`, 
+            getPositionFromColor(imageContext, [imageColors[i].color[0], imageColors[i].color[1], imageColors[i].color[2]]),
+          );
+        }
         
         DrawAllShapes();
       };
