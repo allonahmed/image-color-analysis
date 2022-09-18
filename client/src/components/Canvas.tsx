@@ -22,14 +22,15 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
   let colorCanvas: any;
   let colorContext: any;
 
-  const [ color, setColor ] = useState<any>(null);
-  const [ updateColor, setUpdateColor ] = useState<boolean>(false);
-  const [ mousePosition ,setMousePosition ] = useState<any>(null);
-  const [ shapes, setShapes ] = useState<Array<any>>([]); 
+  const [ color, setColor ] = useState<any>(null); // color of mouseposition pixel in canvas
+  const [ updateColor, setUpdateColor ] = useState<boolean>(false); // boolean to allow shapes to be moved
+  const [ mousePosition ,setMousePosition ] = useState<any>(null); // mouse position in canvas
+  const [ shapes, setShapes ] = useState<Array<any>>([]); // array that contains the color shapes
 
   const { imageColors } = useAppSelector(state => state.image);
   const dispatch = useAppDispatch();
 
+  // creates and loads image and places it in a canvas and creates the shapes from image color data
   useEffect(()=> { 
     if (image && imageColors){
       //create element element with image source
@@ -50,12 +51,14 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         canvas.width = img.width;
         imageContext.drawImage(img, 0,0, img.width, img.height);
 
+
+        // create colors canvas and places shapes inside
         colorCanvas   = document.getElementById('colors');
         colorContext = colorCanvas.getContext('2d');
-        const myc = colorContext.canvas;   
-        colorContext.clearRect(0, 0, myc.width, myc.height); 
+        const myc = colorContext.canvas;  
         myc.height = 500; 
-        myc.width = 500;  
+        myc.width = 500;   
+        colorContext.clearRect(0, 0, myc.width, myc.height); 
 
         CreateShape(
           canvas.height, 
@@ -77,7 +80,6 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         );
         
         DrawAllShapes();
-
       };
     }
   },[image]);
@@ -92,15 +94,11 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
       buffer = data.data;                /// and its pixel buffer
     let x, y = 0, p, px;                     /// for iterating
     const res = [];
-    /// iterating x/y instead of forward to get position the easy way
-    for(;y < h; y++) {
-      /// common value for all x
-      p = y * 4 * w;
-      for(x = 0; x < w; x++) {
-        /// next pixel (skipping 4 bytes as each pixel is RGBA bytes)
+    for(;y < h; y++) { // iterating x/y instead of forward to get position the easy way
+      p = y * 4 * w; // common value for all x
+      for(x = 0; x < w; x++) { // next pixel (skipping 4 bytes as each pixel is RGBA bytes)
         px = p + x * 4;
-        /// if red component match check the others
-        if ((buffer[px ] + 20 >= color[0] && buffer[px] - 20 <= color[0])) {
+        if ((buffer[px ] + 20 >= color[0] && buffer[px] - 20 <= color[0])) { // if red component match check the others
           if ((buffer[px + 1] + 20 >= color[1] && buffer[px + 1] - 20 <= color[1]) && (buffer[px + 2] + 20 >= color[2] && buffer[px + 2] - 20 <= color[2])) {
             res.push([x, y]);
           }
@@ -139,24 +137,21 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
     const pos = getMousePosition(colorCanvas, e);
     const x = pos.x;
     const y =  pos.y;
-
     return [x,y];
   };
+
   const moveColor = (e: SyntheticEvent) => {
     // canvas of color shapes
     if(updateColor && imageColors){
-
       const imageCanvas : any  = document.getElementById('canvas');
-      const imageCtx = imageCanvas.getContext('2d');
+      const imageContext = imageCanvas.getContext('2d');
         
       const colorCanvas : any  = document.getElementById('colors');
-      const colorContext = colorCanvas.getContext('2d');
-      const pos = getMousePosition(colorCanvas, e);
-      const x = pos.x;
-      const y =  pos.y;
-      //   // set color of current mouseover location by getting imagedata of canvas pixel
-      setColor(`rgba(${imageCtx.getImageData(x, y, 1, 1).data[0]},${imageCtx.getImageData(x, y, 1, 1).data[1]}, ${imageCtx.getImageData(x, y, 1, 1).data[2]}, 1)`);
-      //   DrawShapes(shape);
+      const { x, y } = getMousePosition(colorCanvas, e);  // mouse position
+      const imageData = imageContext.getImageData(x, y, 1, 1).data; // color of position
+      // set color of current mouseover location by getting imagedata of canvas pixel
+      setColor(`rgba(${imageData[0]},${imageData[1]}, ${imageData[2]}, 1)`);
+
       if((shapes[0].xPos + 30 >= mousePosition.x && shapes[0].xPos - 30 <= mousePosition.x) && (shapes[0].yPos + 30 >= mousePosition.y && shapes[0].yPos - 30 <= mousePosition.y)){
         const colorCanvas : any  = document.getElementById('colors');
         const colorContext = colorCanvas.getContext('2d');
@@ -167,7 +162,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         data[0].fill = color;
         dispatch(updateImageColors([
           {
-            color: [imageCtx.getImageData(x, y, 1, 1).data[0], imageCtx.getImageData(x, y, 1, 1).data[1], imageCtx.getImageData(x, y, 1, 1).data[2]],
+            color: [imageData[0], imageData[1], imageData[2]],
             percentage: imageColors[0].percentage
           },
           imageColors[1],
@@ -189,7 +184,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         dispatch(updateImageColors([
           imageColors[0],
           {
-            color: [imageCtx.getImageData(x, y, 1, 1).data[0], imageCtx.getImageData(x, y, 1, 1).data[1], imageCtx.getImageData(x, y, 1, 1).data[2]],
+            color: [imageData[0], imageData[1], imageData[2]],
             percentage: imageColors[0].percentage
           },
           imageColors[2]
@@ -211,7 +206,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
           imageColors[0],
           imageColors[1],
           {
-            color: [imageCtx.getImageData(x, y, 1, 1).data[0], imageCtx.getImageData(x, y, 1, 1).data[1], imageCtx.getImageData(x, y, 1, 1).data[2]],
+            color: [imageData[0], imageData[1], imageData[2]],
             percentage: imageColors[0].percentage
           }
         ]));
@@ -272,10 +267,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
       <canvas  
         style={{ position:'absolute', zIndex: 300, top: 0, right: 0, cursor: 'pointer' }} 
         id='colors' 
-        onMouseMove={(e)=>{
-          getPosition(e);
-          moveColor(e);
-        }}
+        onMouseMove={moveColor}
         onClick={()=>setUpdateColor(!updateColor)}
       />
       <div className='palette'>
