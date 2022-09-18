@@ -55,24 +55,6 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         colorCanvas.height = colorCanvas.width = imageSize;  
         colorContext.clearRect(0, 0, colorCanvas.width, colorCanvas.height); 
 
-        // CreateShape(
-        //   imageCanvas.height, 
-        //   imageCanvas.width, 
-        //   `rgba(${imageColors[0].color[0]}, ${imageColors[0].color[1]}, ${imageColors[0].color[2]}, ${imageColors[0].color[3]})`,
-        //   getPositionFromColor(imageContext, [imageColors[0].color[0], imageColors[0].color[1], imageColors[0].color[2]]),
-        // );
-        // CreateShape(
-        //   imageCanvas.height, 
-        //   imageCanvas.width, 
-        //   `rgba(${imageColors[1].color[0]}, ${imageColors[1].color[1]}, ${imageColors[1].color[2]}, ${imageColors[1].color[3]})`,
-        //   getPositionFromColor(imageContext, [imageColors[1].color[0], imageColors[1].color[1], imageColors[1].color[2]]),
-        // );
-        // CreateShape(
-        //   imageCanvas.height, 
-        //   imageCanvas.width, 
-        //   `rgba(${imageColors[2].color[0]}, ${imageColors[2].color[1]}, ${imageColors[2].color[2]}, ${imageColors[2].color[3]})`, 
-        //   getPositionFromColor(imageContext, [imageColors[2].color[0], imageColors[2].color[1], imageColors[2].color[2]]),
-        // );
         for(let i = 0; i < imageColors.length; i += 1){
           CreateShape(
             imageCanvas.height, 
