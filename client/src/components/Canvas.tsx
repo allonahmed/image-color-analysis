@@ -17,6 +17,8 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
 
   const [color, setColor] = useState<any>(null);
   const { imageColors } = useAppSelector(state => state.image);
+  const [position, setPosition] = useState<any>(null);
+
 
   useEffect(()=> {
     if (image && imageColors){
@@ -37,9 +39,9 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         canvas.height = img.height; 
         canvas.width = img.width;
         ctx.drawImage(img, 0,0, img.width, img.height);
+        // removeBackground(ctx, canvas.height, canvas.width);
         getColors();
       };
-      // removeBackground(ctx, canvas.height, canvas.width);
     }
   },[image]);
 
@@ -83,57 +85,98 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
   
   // function for getting mouseposition when hovering over canvas (onmouseover method)
   const getPosition = (e: SyntheticEvent) => {
-    const canvasElement : any  = document.getElementById('canvas');
-    const ctx = canvasElement.getContext('2d');
-    const pos = getMousePosition(canvasElement, e);
+    // canvas of color shapes
+    const colorCanvas : any  = document.getElementById('colors');
+    // canvas of image
+    const imageCanvas : any  = document.getElementById('canvas');
+    const imageCtx = imageCanvas.getContext('2d');
+
+    const pos = getMousePosition(colorCanvas, e);
     const x = pos.x;
     const y =  pos.y;
-    // set color of current mouseover location by getting imagedata of canvas pixel
-    setColor(`rgba(${ctx.getImageData(x, y, 1, 1).data[0]},${ctx.getImageData(x, y, 1, 1).data[1]}, ${ctx.getImageData(x, y, 1, 1).data[2]}, 1)`);
-  };
 
+    //update position as state
+    setPosition([x,y]);
+    // set color of current mouseover location by getting imagedata of canvas pixel
+    setColor(`rgba(${imageCtx.getImageData(x, y, 1, 1).data[0]},${imageCtx.getImageData(x, y, 1, 1).data[1]}, ${imageCtx.getImageData(x, y, 1, 1).data[2]}, 1)`);
+  };
+  
+  useEffect(()=>{
+    getColors();
+  },[position]);
   // gets the color locations in the palette and creates blocks to reference their location
   const getColors = () => {
     if(imageColors){
       const canvas : any  = document.getElementById('canvas');
-      const context = canvas.getContext('2d');
-
+      const ctx = canvas.getContext('2d');
+      
       //get postition of specific color in canvas
-      const pos1 = getPositionFromColor(context, [imageColors[0].color[0], imageColors[0].color[1], imageColors[0].color[2]]);
-      const pos2 = getPositionFromColor(context, [imageColors[1].color[0], imageColors[1].color[1], imageColors[1].color[2]]);
-      const pos3 = getPositionFromColor(context, [imageColors[2].color[0], imageColors[2].color[1], imageColors[2].color[2]]);
+      // const pos1 = getPositionFromColor(ctx, [imageColors[0].color[0], imageColors[0].color[1], imageColors[0].color[2]]);
+      // setPosition(pos1);
 
+      let pos1;
+      if(position === null){
+        pos1 = getPositionFromColor(ctx, [imageColors[0].color[0], imageColors[0].color[1], imageColors[0].color[2]]);
+        setPosition(pos1);
+      }
+
+      // const pos2 = getPositionFromColor(ctx, [imageColors[1].color[0], imageColors[1].color[1], imageColors[1].color[2]]);
+      // const pos3 = getPositionFromColor(ctx, [imageColors[2].color[0], imageColors[2].color[1], imageColors[2].color[2]]);
+
+
+      const cvs : any  = document.getElementById('colors');
+      const context = cvs.getContext('2d');
+      const myc = context.canvas;   
+      context.clearRect(0, 0, myc.width, myc.height);
+      myc.height = 500; 
+      myc.width = 500;
+      console.log(color);
+      // context.clearRect(0, 0, canvas.width, canvas.height);
       //create circles two reference where the colors are located in thhe canvas
       context.lineWidth = 5;
       context.strokeStyle='#fff';
-      context.fillStyle = `rgba(${imageColors[0].color[0]}, ${imageColors[0].color[1]}, ${imageColors[0].color[2]}, ${imageColors[0].color[3]}`;
+      context.fillStyle = color ? color : `rgba(${imageColors[0].color[0]}, ${imageColors[0].color[1]}, ${imageColors[0].color[2]}, ${imageColors[0].color[3]})`;
       context.beginPath();
-      context.arc (pos1 && pos1[0], pos1 && pos1[1], 20, 0, 2 * Math.PI);
+      context.arc (position ? position[0] : (pos1 && pos1[0]), position ? position[1] : (pos1 && pos1[1]), 20, 0, 2 * Math.PI);
       context.stroke();
       context.fill();
 
-      context.beginPath();
-      context.fillStyle = `rgba(${imageColors[1].color[0]}, ${imageColors[1].color[1]}, ${imageColors[1].color[2]}, ${imageColors[1].color[3]}`;
-      context.arc (pos2 && pos2[0], pos2 && pos2[1], 20, 0, 2 * Math.PI); 
-      context.stroke();
-      context.fill();
-
-      context.beginPath();
-      context.fillStyle = `rgba(${imageColors[2].color[0]}, ${imageColors[2].color[1]}, ${imageColors[2].color[2]}, ${imageColors[2].color[3]}`;
-      context.arc (pos3 && pos3[0], pos3 && pos3[1], 20, 0, 2 * Math.PI); 
-      context.stroke();
-      context.fill();
+      // context.beginPath();
+      // context.fillStyle = `rgba(${imageColors[1].color[0]}, ${imageColors[1].color[1]}, ${imageColors[1].color[2]}, ${imageColors[1].color[3]}`;
+      // context.arc (pos2 && pos2[0], pos2 && pos2[1], 20, 0, 2 * Math.PI); 
+      // context.stroke();
+      // context.fill();
+ 
+      // context.beginPath();
+      // context.fillStyle = `rgba(${imageColors[2].color[0]}, ${imageColors[2].color[1]}, ${imageColors[2].color[2]}, ${imageColors[2].color[3]}`;
+      // context.arc (pos3 && pos3[0], pos3 && pos3[1], 20, 0, 2 * Math.PI); 
+      // context.stroke();
+      // context.fill();
 
     }
   };
 
+  // const mouse_down = (e: any) => {
+  //   e.preventDefault();
+  //   const startx: any = e.clientX;
+  //   const starty: any = e.clientY;
+  // };
+
+  // const drawShapes = () => {
+  //   const canvasElement : any  = document.getElementById('canvas');
+  //   const ctx = canvasElement.getContext('2d');
+  //   const canvas = ctx.canvas;
+  //   ctx.clearRect(0,0,canvas.width, canvas.height);
+  // };
+
   return (
-    <>
+    <div style={{position:'relative', zIndex: 20}}>
       <canvas 
         id={'canvas'}
-        onMouseMove={getPosition}
+        
+        // onMouseDown={mouse_down}
       />
-      <canvas  style={{position:'absolute'}} id='cc'/>
+      <canvas  style={{position:'absolute', zIndex: 300, top: 0, right: 0}} id='colors' onMouseMove={getPosition}/>
       {/* <div style={{height: '50px', width: '50px', backgroundColor: color || 'green', marginBottom: '50px'}}></div> */}
       <div className='palette'>
         {imageColors && imageColors.map((color: any, id: number) => {
@@ -158,7 +201,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
