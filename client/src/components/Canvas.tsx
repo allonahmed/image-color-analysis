@@ -83,6 +83,14 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
     };
   }
   
+  // prevents position change if goes out of bounds (color changes to black)
+  const positionCheck = (x: number, y: number) => {
+    if (color === 'rgba(0,0, 0, 1)'){
+      return;
+    }
+    else setPosition([x,y]);
+  };
+
   // function for getting mouseposition when hovering over canvas (onmouseover method)
   const getPosition = (e: SyntheticEvent) => {
     // canvas of color shapes
@@ -94,12 +102,14 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
     const pos = getMousePosition(colorCanvas, e);
     const x = pos.x;
     const y =  pos.y;
-
-    //update position as state
-    setPosition([x,y]);
+    
     // set color of current mouseover location by getting imagedata of canvas pixel
     setColor(`rgba(${imageCtx.getImageData(x, y, 1, 1).data[0]},${imageCtx.getImageData(x, y, 1, 1).data[1]}, ${imageCtx.getImageData(x, y, 1, 1).data[2]}, 1)`);
+    //update position as state
+    positionCheck(x, y);
   };
+
+
   
   useEffect(()=>{
     getColors();
@@ -173,8 +183,6 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
     <div style={{position:'relative', zIndex: 20}}>
       <canvas 
         id={'canvas'}
-        
-        // onMouseDown={mouse_down}
       />
       <canvas  style={{position:'absolute', zIndex: 300, top: 0, right: 0}} id='colors' onMouseMove={getPosition}/>
       {/* <div style={{height: '50px', width: '50px', backgroundColor: color || 'green', marginBottom: '50px'}}></div> */}
