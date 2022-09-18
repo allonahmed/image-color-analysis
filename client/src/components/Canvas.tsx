@@ -61,8 +61,8 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         /// next pixel (skipping 4 bytes as each pixel is RGBA bytes)
         px = p + x * 4;
         /// if red component match check the others
-        if ((buffer[px ] + 10 >= color[0] && buffer[px] - 10 <= color[0])) {
-          if ((buffer[px + 1] + 10 >= color[1] && buffer[px + 1] - 10 <= color[1]) && (buffer[px + 2] + 10 >= color[2] && buffer[px + 2] - 10 <= color[2])) {
+        if ((buffer[px ] + 20 >= color[0] && buffer[px] - 20 <= color[0])) {
+          if ((buffer[px + 1] + 20 >= color[1] && buffer[px + 1] - 20 <= color[1]) && (buffer[px + 2] + 20 >= color[2] && buffer[px + 2] - 20 <= color[2])) {
             res.push([x, y]);
           }
         }
@@ -108,19 +108,19 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
       context.strokeStyle='#fff';
       context.fillStyle = `rgba(${imageColors[0].color[0]}, ${imageColors[0].color[1]}, ${imageColors[0].color[2]}, ${imageColors[0].color[3]}`;
       context.beginPath();
-      context.arc (pos1 && pos1[0], pos1 && pos1[1], 15, 0, 2 * Math.PI);
+      context.arc (pos1 && pos1[0], pos1 && pos1[1], 20, 0, 2 * Math.PI);
       context.stroke();
       context.fill();
 
       context.beginPath();
       context.fillStyle = `rgba(${imageColors[1].color[0]}, ${imageColors[1].color[1]}, ${imageColors[1].color[2]}, ${imageColors[1].color[3]}`;
-      context.arc (pos2 && pos2[0], pos2 && pos2[1], 15, 0, 2 * Math.PI); 
+      context.arc (pos2 && pos2[0], pos2 && pos2[1], 20, 0, 2 * Math.PI); 
       context.stroke();
       context.fill();
 
       context.beginPath();
       context.fillStyle = `rgba(${imageColors[2].color[0]}, ${imageColors[2].color[1]}, ${imageColors[2].color[2]}, ${imageColors[2].color[3]}`;
-      context.arc (pos3 && pos3[0], pos3 && pos3[1], 15, 0, 2 * Math.PI); 
+      context.arc (pos3 && pos3[0], pos3 && pos3[1], 20, 0, 2 * Math.PI); 
       context.stroke();
       context.fill();
 

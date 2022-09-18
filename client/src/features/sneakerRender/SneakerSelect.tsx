@@ -1,7 +1,7 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { FiCheck, FiX as DeleteQuery, FiSearch as SearchIcon} from 'react-icons/fi';
 import { useAppDispatch } from '../../hooks';
-import { fetchImageType, updateImageData, updateImageColors, updatedRelated } from '../../redux/reducers/image';
+import { fetchImageType, updateImageData, updateImageColors, updatedRelated, resetImage } from '../../redux/reducers/image';
 import { updateLoading } from '../../redux/reducers/system';
 import { UploadImage } from '../../api/uploadImage';
 import axios from 'axios';
@@ -26,6 +26,7 @@ export const SneakerSelect: React.FunctionComponent = () => {
   //sending image to flask server for image processing 
   const HandleSubmit = async (e: SyntheticEvent, item : any) => { 
     e.preventDefault();
+    dispatch(resetImage());
     if(item.name.length > 25){
       setQuery(item.name.substring(0,40) + '...');
     } else setQuery(item.name);

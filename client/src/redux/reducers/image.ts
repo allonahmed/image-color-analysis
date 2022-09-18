@@ -36,6 +36,7 @@ const imageSlice = createSlice({
   name: 'image',
   initialState: initialState,
   reducers: {
+    resetImage: () => initialState,
     updateImage: (state, action: any) => {
       let url = action.payload;
       if(url.includes('images.stockx')){
@@ -66,6 +67,6 @@ const imageSlice = createSlice({
   }
 });
 
-export const { updateImage, updateImageColors, updateImageData, updatedRelated } = imageSlice.actions;
+export const { updateImage, updateImageColors, updateImageData, updatedRelated, resetImage } = imageSlice.actions;
 
 export default imageSlice.reducer;
