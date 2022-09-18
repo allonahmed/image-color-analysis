@@ -24,7 +24,7 @@ def ct_dominant_color(image_path):
 
 #converts webp to png 
 def convert(image_path):
-    if(imghdr.what(path) == 'webp'):
+    if(imghdr.what(image_path) == 'webp'):
         dwebp(image_path, './assets/convert2png.png', "-o")
         return './assets/convert2png.png'
     else:
@@ -66,6 +66,7 @@ def QuantizeImage(image_path):
 #returns accurate pallete of image (returns rgba of most popular pixel colors)
 def get_color_pallete(path, count = 3):
     #get img path of images after processing performed
+    path = convert(path)
     path = transparentBackground(path)
     path = QuantizeImage(path)
 

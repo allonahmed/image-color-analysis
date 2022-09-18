@@ -1,5 +1,6 @@
-import React, { SyntheticEvent, useEffect } from 'react';
-
+import React, { SyntheticEvent, useEffect, useState } from 'react';
+import { rgbToHex } from '../helpers';
+import { useAppSelector } from '../hooks';
 
 /**
  * @todos :
@@ -13,6 +14,9 @@ type Props = {
 }
 
 export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
+
+  const [color, setColor] = useState<any>(null);
+  const { imageColors} = useAppSelector(state => state.image);
 
   useEffect(()=> {
     if (image){
@@ -38,9 +42,42 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
     }
   },[image]);
 
+  const getPositionFromColor = (ctx: any, color: any) => {
+
+    const w = ctx.canvas.width,
+      h = ctx.canvas.height,
+      data = ctx.getImageData(0, 0, w, h), /// get image data
+      buffer = data.data,                  /// and its pixel buffer
+      len = buffer.length;                 /// cache length
+    let x, y = 0, p, px;                     /// for iterating
+
+    /// iterating x/y instead of forward to get position the easy way
+    for(;y < h; y++) {
+
+      /// common value for all x
+      p = y * 4 * w;
+
+      for(x = 0; x < w; x++) {
+
+        /// next pixel (skipping 4 bytes as each pixel is RGBA bytes)
+        px = p + x * 4;
+
+        /// if red component match check the others
+        if (buffer[px] === color[0]) {
+          if (buffer[px + 1] === color[1] &&
+                    buffer[px + 2] === color[2]) {
+
+            return [x, y];
+          }
+        }
+      }
+    }
+    return null;
+  };
 
   function getMousePos(canvas: any, evt: any) {
     const rect = canvas.getBoundingClientRect();
+    console.log(rect);
     return {
       x: evt.clientX - rect.left,
       y: evt.clientY - rect.top
@@ -50,19 +87,47 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
   const getPosition = (e: SyntheticEvent) => {
     const canvasElement : any  = document.getElementById('canvas');
     const ctx = canvasElement.getContext('2d');
+    
     const pos = getMousePos(canvasElement, e);
     const x = pos.x;
     const y =  pos.y;
+    console.log(getPositionFromColor(ctx, [ctx.getImageData(x, y, 1, 1).data[0], ctx.getImageData(x, y, 1, 1).data[1], ctx.getImageData(x, y, 1, 1).data[2]]));
+    console.log(ctx.getImageData(x, y, 1, 1).data);
+    setColor(`rgba(${ctx.getImageData(x, y, 1, 1).data[0]},${ctx.getImageData(x, y, 1, 1).data[1]}, ${ctx.getImageData(x, y, 1, 1).data[2]}, 1)`);
     console.log('x:', x, 'y:', y);
-    ctx.fillStyle = '#000000';
-    ctx.fillRect (pos.x, pos.y, 4, 4);
   };
 
   return (
-    <canvas 
-      id={'canvas'}
-      onMouseMove={getPosition}
-    />
+    <>
+      <canvas 
+        id={'canvas'}
+        onMouseMove={getPosition}
+      />
+      <div style={{height: '50px', width: '50px', backgroundColor: color || 'green', marginBottom: '50px'}}></div>
+      <div className='palette'>
+        {imageColors && imageColors.map((color: any, id: number) => {
+          return (
+            <div key={id} className='palette-item'>
+              {/* <div style={{fontSize:'8px'}}>rgb({color.color[0]},{color.color[1]}, {color.color[2]})</div> */}
+              <div
+                className='palette-color'
+                style={{
+                  backgroundColor: `rgba(${color.color[0]}, ${color.color[1]}, ${color.color[2]}, ${color.color[3]}`,
+                  // backgroundColor:`rgb(${color[0]}, ${color[1]}, ${color[2]})`,
+                  boxShadow: `0 0 5px 1px rgb(${color[0]}, ${color[1]}, ${color[2]})`
+                }}
+              >
+                      
+                <div className='palette-hex'>
+                  {rgbToHex(color.color[0], color.color[1], color.color[2])}
+                </div>
+              </div>
+              {/* <div>{toPercent(color.percentage)}</div> */}
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 
