@@ -10,7 +10,7 @@ import store from '../../redux/store';
 import 'swiper/css/navigation';
 import 'swiper/css';
 import { updateLoading } from '../../redux/reducers/system';
-import { fetchImageType, updatedRelated, updateImage, updateImageColors, updateImageData } from '../../redux/reducers/image';
+import { fetchImageType, resetImage, updatedRelated, updateImage, updateImageColors, updateImageData } from '../../redux/reducers/image';
 import { getRelated } from '../../api/testapi';
 import { UploadImage } from '../../api/uploadImage';
 
@@ -63,9 +63,11 @@ export const Relateable : React.FunctionComponent<Props> = ({ data }) => {
             <SwiperSlide 
               key={id}
               className='slide noselect'
-              onClick={async ()=> {
+              onClick={async (e)=> {
+                e.preventDefault();
                 if (item){
                   dispatch(updateLoading(true));
+                  dispatch(resetImage());
                   await getRelated(item.silhouette, item.sku).then((resp)=> {
                     dispatch(updatedRelated(resp));
                   });
