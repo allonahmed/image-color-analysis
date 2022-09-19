@@ -7,11 +7,12 @@
 .modal-button {
   position: relative;
   background-color: #fff;
-  width: 520px;
+  width: 620px;
   padding: 20px 0;
   border-radius: 10px;
   font-size: 16px;
   color: #353535;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.115);
   cursor: pointer;
   background-clip: padding-box; /* !importanté */
   border: solid 3px transparent; /* !importanté */

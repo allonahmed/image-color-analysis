@@ -250,7 +250,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
     if(imageColors){
       const colorCanvas : any  = document.getElementById('colors');
       const colorContext = colorCanvas.getContext('2d');
-      colorContext.lineWidth = 3;
+      colorContext.lineWidth = 8;
       colorContext.strokeStyle = shape.stroke;
       colorContext.fillStyle = shape.fill;
       colorContext.beginPath();
