@@ -4,7 +4,8 @@
   align-items: center;
 }
 .sneaker-selection-input-container{
-  width: 520px;
+  width: 620px;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.115);
   position: relative;
   background-clip: padding-box; /* !importanté */
   border: solid 3px transparent; /* !importanté */
@@ -111,7 +112,7 @@
   transform: scaleX(-1);
 }
 .options-container{
-  width: 520px;
+  width: 620px;
   max-height: 721px;
   color: #000;
   overflow-x: auto;
