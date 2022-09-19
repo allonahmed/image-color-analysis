@@ -61,6 +61,11 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
             imageCanvas.width, 
             `rgba(${imageColors[i].color[0]}, ${imageColors[i].color[1]}, ${imageColors[i].color[2]}, ${imageColors[i].color[3]})`, 
             getPositionFromColor(imageContext, [imageColors[i].color[0], imageColors[i].color[1], imageColors[i].color[2]]),
+            getContrast({
+              r: imageColors[i].color[0],
+              g: imageColors[i].color[1],
+              b: imageColors[i].color[2],
+            })
           );
         }
         
@@ -145,6 +150,11 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         data[0].xPos = mousePosition.x;
         data[0].yPos = mousePosition.y;
         data[0].fill = color;
+        data[0].stroke = getContrast({
+          r: imageData[0],
+          g: imageData[1],
+          b: imageData[2]
+        });
         dispatch(updateImageColors([
           {
             color: [imageData[0], imageData[1], imageData[2]],
@@ -166,6 +176,12 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         data[1].xPos = mousePosition.x;
         data[1].yPos = mousePosition.y;
         data[1].fill = color;
+        data[1].stroke = getContrast({
+          r: imageData[0],
+          g: imageData[1],
+          b: imageData[2]
+        });
+        
         dispatch(updateImageColors([
           imageColors[0],
           {
@@ -187,6 +203,11 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         data[2].xPos = mousePosition.x;
         data[2].yPos = mousePosition.y;
         data[2].fill = color;
+        data[2].stroke = getContrast({
+          r: imageData[0],
+          g: imageData[1],
+          b: imageData[2]
+        });
         dispatch(updateImageColors([
           imageColors[0],
           imageColors[1],
@@ -207,7 +228,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
   };
 
   //create shape object
-  const CreateShape = (height: number, width: number, fill: string, pos: any) => {
+  const CreateShape = (height: number, width: number, fill: string, pos: any, stroke: any) => {
     if(imageColors){
       const list = shapes;
       const shape = {
@@ -216,6 +237,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         width: width,
         height: height,
         fill: fill,
+        stroke: stroke
       };
       list.push(shape);
       setShapes(list);
@@ -228,8 +250,8 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
     if(imageColors){
       const colorCanvas : any  = document.getElementById('colors');
       const colorContext = colorCanvas.getContext('2d');
-      colorContext.lineWidth = 5;
-      colorContext.strokeStyle='#fff';
+      colorContext.lineWidth = 3;
+      colorContext.strokeStyle = shape.stroke;
       colorContext.fillStyle = shape.fill;
       colorContext.beginPath();
       colorContext.arc (shape.xPos, shape.yPos, 20, 0, 2 * Math.PI);
@@ -253,6 +275,7 @@ export const Canvas : React.FunctionComponent<Props> = ({ image }) => {
         style={{ position:'absolute', zIndex: 300, top: 0, right: 0, cursor: 'pointer' }} 
         id='colors' 
         onMouseMove={moveColor}
+        onMouseLeave={() => setUpdateColor(false)}
         onClick={()=>setUpdateColor(!updateColor)}
       />
       <div className='palette'>
