@@ -1,4 +1,4 @@
-from colorthief import ColorThief
+# from colorthief import ColorThief
 from PIL import Image
 import numpy as np
 from webptools import dwebp, grant_permission # for converting webp to pil supported type
@@ -19,8 +19,8 @@ def transparentBackground(path):
     return './assets/transparent.png'
 
 #using color theif module to generate rgb of most used color in img returns array
-def ct_dominant_color(image_path):
-    return ColorThief(image_path).get_color(quality=3)
+# def ct_dominant_color(image_path):
+#     return ColorThief(image_path).get_color(quality=3)
 
 #converts webp to png 
 def convert(image_path):
@@ -31,10 +31,10 @@ def convert(image_path):
         return image_path
 
 #using color theif module to generate rgb of most prominate colors in img returns 2d array
-def ct_pallete_colors(image_path):
-    if(imghdr.what(image_path) == 'webp'):
-        image_path = convert(image_path)
-    return ColorThief(image_path).get_palette(color_count=2)    
+# def ct_pallete_colors(image_path):
+#     if(imghdr.what(image_path) == 'webp'):
+#         image_path = convert(image_path)
+#     return ColorThief(image_path).get_palette(color_count=2)    
 
 #using Pillow library to generate colors in image
 def get_colors(image_path, type = "RGBA"):
