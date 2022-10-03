@@ -9,9 +9,10 @@ type Props = {
 }
 
 const Clothes : React.FunctionComponent<{ item: any }> = ({ item }) => {
+  console.log(item.img_url);
   return (
     <div> 
-      <img src={item.image_url} style={{width: '200px', height: '200px'}}/>
+      <img src={item.img_url} style={{width: '200px', height: '200px'}}/>
     </div>  
   );
 };
