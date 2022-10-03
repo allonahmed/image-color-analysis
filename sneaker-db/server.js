@@ -2,13 +2,12 @@ const express = require("express"); //import Express (backend framework for node
 const mysql = require("mysql"); // our dbms
 const bodyParser = require("body-parser"); //for getting body of response
 const cors = require("cors");
-const { reset } = require("nodemon");
 
 const app = express()
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-app.use(function (req, res, next) {
+app.use(function (_, res, next) {
   res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -39,7 +38,7 @@ const pool = mysql.createPool({
 });
 
 //test
-pool.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
+pool.query('SELECT 1 + 1 AS solution', function (error, results, _) {
   if (error) throw error;
   console.log('The solution is: ', results[0].solution);
 });
