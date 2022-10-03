@@ -27,7 +27,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "password",
-  database: "scrape-data",
+  database: "scrape_data",
   port: "3306",
 });
 
@@ -38,7 +38,7 @@ app.get('/get-gym-shark', (_, res) => {
   })
 })
 
-const PORT = 6000;
+const PORT = 8000;
 
 app.listen(PORT, () => {
   //test listen to be sure the server is running on port

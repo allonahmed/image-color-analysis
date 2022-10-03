@@ -1,14 +1,21 @@
-import React from 'react';
-import { generateDummyClothes } from '../assets/data/dummdata';
+import React, { useEffect, useState } from 'react';
+import { getGymShark } from '../api/clothes';
 import { ClothesRender } from '../components/ClothesRender';
-
 
 export const Shop = () => {
 
-  generateDummyClothes(100);
+  const [clothesData, setClothesData] = useState<any>(null);
+
+  useEffect(()=> {
+    getGymShark().then((res)=>{
+      setClothesData(res);
+    });
+  },[]);
+  console.log(clothesData);
+
   return (
     <div>
-      <ClothesRender clothesData={{}}/>
+      {clothesData && <ClothesRender clothesData={clothesData}/>}
     </div>
   );
 };
