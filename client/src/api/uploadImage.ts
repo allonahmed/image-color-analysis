@@ -16,7 +16,7 @@ export const UploadImage = async (image: string | File[], e?: React.FormEvent<HT
     const formData = new FormData();
     
     formData.append('file', image[0]);
-    return await axios.post('/upload-image',
+    return await axios.post('http://10.68.117.80:8092/upload-image',
       formData,
       {
         headers: {
