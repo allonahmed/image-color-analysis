@@ -12,4 +12,5 @@ Using Flask and ReactJS to upload images and render the colors contained within 
 - Machine learning for detecting objects withen images
 - Web script automation for automatic extraction of data from select online clothing stores
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="mSDsg6H"><a href="https://imgur.com/mSDsg6H">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+### Preview Image:
+<img src='https://imgur.com/mSDsg6H.png'>
