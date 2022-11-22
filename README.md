@@ -10,7 +10,7 @@ Using Flask and ReactJS to upload images and render the colors contained within 
 ### Technology
 - Image processing for extracting image data
 - Machine learning for detecting objects withen images
-- Web script automation for automatic extraction of data from select online clothing stores
+- Web scrape automation for automatic extraction of data from select online clothing stores
 
 ### Preview Image:
 <img src='https://imgur.com/mSDsg6H.png'>
